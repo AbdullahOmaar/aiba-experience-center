@@ -15,9 +15,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate static application boundaries
-        run: npm run validate
-      - name: Run content and domain guardrail tests
-        run: npm test
-      - name: Build static artifact
+      - name: Validate, test and build once
         run: npm run build

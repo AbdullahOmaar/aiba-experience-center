@@ -1,9 +1,10 @@
 # EXC Architecture Decision Record — ADR-EXC-001
 
-- Status: Proposed implementation baseline; Product Owner readback still required.
+- Status: Accepted for initial EXC implementation under the user's explicit Owner instruction on 2026-11-13.
 - Date: 2026-11-13
 - Scope: Initial public explanatory experience only.
 - Decision owner: Project Master / implementation owner.
+- Owner authorization: explicit instruction in the project chat on 2026-11-13 to begin implementation and delegate delivery responsibility to Project Master.
 
 ## Context
 EXC is a separate interactive graphical explainer. It must not become a second ERP, a fictional demo, or an application coupled to AIBA runtime data. The first release is public and explanatory.
