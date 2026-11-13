@@ -40,3 +40,11 @@ test("quick navigation hands focus to the destination for every result type",asy
   assert.ok(source.includes('focusDestination(card,document.querySelector("#financial-concepts"))'));
   assert.ok(source.includes("target.focus({preventScroll:true})"));
 });
+
+test("financial concept navigation focuses the re-rendered selected card",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  const clickIndex=source.indexOf('document.querySelector(selector)?.click()');
+  const refreshIndex=source.indexOf('const selectedCard=document.querySelector(selector)',clickIndex);
+  const focusIndex=source.indexOf('focusDestination(selectedCard,document.querySelector("#financial-concepts"))',refreshIndex);
+  assert.ok(clickIndex>=0&&refreshIndex>clickIndex&&focusIndex>refreshIndex);
+});

@@ -92,9 +92,10 @@ function openJourney(id){
   focusDestination(stage?.querySelector(".flow-step")||stage,document.querySelector("#journeys"));
 }
 function openConcept(id){
-  const card=document.querySelector("#financial-map [data-financial-concept="+id+"]");
-  card?.click();
-  focusDestination(card,document.querySelector("#financial-concepts"));
+  const selector="#financial-map [data-financial-concept="+id+"]";
+  document.querySelector(selector)?.click();
+  const selectedCard=document.querySelector(selector);
+  focusDestination(selectedCard,document.querySelector("#financial-concepts"));
 }
 function render(){
   const l=labels[isArabic()?"ar":"en"];
