@@ -20,6 +20,8 @@ test("module status labels distinguish charter scope from gated and source-depen
   assert.match(MODULES.find(x=>x.id==="M07").short.en,/In V1 scope.*implementation gated/);
   assert.match(MODULES.find(x=>x.id==="M07").short.ar,/ضمن نطاق V1.*خاضع للاعتماد/);
   assert.equal(MODULES.find(x=>x.id==="M08").status,"dependent");
+  assert.match(MODULES.find(x=>x.id==="M08").short.en,/In V1 scope.*source-dependent/);
+  assert.match(MODULES.find(x=>x.id==="M08").short.ar,/ضمن نطاق V1.*مرتبط بالمصدر/);
 });
 test("financial concepts preserve invoice, payment, allocation and expense/cash boundaries",()=>{
   const byId=Object.fromEntries(FINANCIAL_CONCEPTS.map(x=>[x.id,x]));
