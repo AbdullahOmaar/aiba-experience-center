@@ -1,4 +1,4 @@
-import { MODULES, JOURNEYS } from "./content.js";
+import { MODULES, JOURNEYS, FINANCIAL_CONCEPTS } from "./content.js";
 
 const dialog = document.querySelector("#quick-nav-dialog");
 const openButton = document.querySelector("#quick-nav-open");
@@ -15,26 +15,26 @@ const isArabic = () => document.documentElement.lang === "ar";
 const localized = value => isArabic() ? value.ar : value.en;
 const labels = {
   en: {
-    sections:"SECTION", module:"MODULE", feature:"FEATURE", journey:"JOURNEY",
+    sections:"SECTION", module:"MODULE", feature:"FEATURE", journey:"JOURNEY", concept:"FINANCIAL CONCEPT",
     empty:"No matches. Try another word or search in Arabic.",
     sectionStory:"Business story", sectionMap:"Module universe", sectionExplorer:"Module explorer",
     sectionFeatures:"Feature explorer", sectionJourneys:"Business flows", sectionFinancial:"Financial concepts",
     sectionAI:"AI capabilities", sectionTrust:"Trust & security", sectionFinal:"Next step", sectionTop:"Back to top",
     descriptionSection:"Jump to this part of the experience", descriptionModule:"Open the module and its responsibilities",
-    descriptionFeature:"Open this specific responsibility", descriptionJourney:"Open this explanatory journey",
+    descriptionFeature:"Open this specific responsibility", descriptionJourney:"Open this explanatory journey", descriptionConcept:"Open this financial concept boundary",
     open:"Open", close:"Close quick navigation", title:"Where would you like to go?",
-    placeholder:"Search modules, features or sections…", hint:"Search in English or Arabic · Use ↑ ↓ then Enter"
+    placeholder:"Search modules, features, concepts or sections…", hint:"Search in English or Arabic · Use ↑ ↓ then Enter"
   },
   ar: {
-    sections:"قسم", module:"وحدة", feature:"ميزة", journey:"مسار",
+    sections:"قسم", module:"وحدة", feature:"ميزة", journey:"مسار", concept:"مفهوم مالي",
     empty:"مفيش نتائج مطابقة. جرّب كلمة تانية أو ابحث بالإنجليزي.",
     sectionStory:"قصة المنتج", sectionMap:"خريطة الوحدات", sectionExplorer:"استكشاف الوحدات",
     sectionFeatures:"استكشاف المميزات", sectionJourneys:"مسارات الأعمال", sectionFinancial:"المفاهيم المالية",
     sectionAI:"قدرات الذكاء الاصطناعي", sectionTrust:"الثقة والأمان", sectionFinal:"الخطوة التالية", sectionTop:"العودة للأعلى",
     descriptionSection:"انتقل إلى هذا الجزء من التجربة", descriptionModule:"افتح الوحدة ومسؤولياتها",
-    descriptionFeature:"افتح المسؤولية المحددة", descriptionJourney:"افتح المسار التوضيحي",
+    descriptionFeature:"افتح المسؤولية المحددة", descriptionJourney:"افتح المسار التوضيحي", descriptionConcept:"افتح حدود هذا المفهوم المالي",
     open:"فتح", close:"إغلاق التنقل السريع", title:"تحب تروح فين؟",
-    placeholder:"ابحث عن وحدة أو ميزة أو قسم…", hint:"ابحث بالعربي أو الإنجليزي · استخدم ↑ ↓ ثم Enter"
+    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", hint:"ابحث بالعربي أو الإنجليزي · استخدم ↑ ↓ ثم Enter"
   }
 };
 const sections = [
@@ -55,6 +55,7 @@ function buildItems(){
   MODULES.forEach(m=>items.push({id:"module-"+m.id,type:"module",typeLabel:l.module,title:m.id+" · "+localized(m.title),description:localized(m.short),keywords:[m.id,m.key,localized(m.description),...m.facets.flatMap(f=>f.filter(Boolean))].join(" "),action:()=>openModule(m.id)}));
   MODULES.forEach(m=>m.facets.forEach((f,index)=>items.push({id:"feature-"+m.id+"-"+index,type:"feature",typeLabel:l.feature,title:m.id+" · "+(isArabic()?f[1]:f[0]),description:isArabic()?f[3]:f[2],keywords:[m.id,m.key,...f].join(" "),action:()=>openFeature(m.id,index)})));
   JOURNEYS.forEach(j=>items.push({id:"journey-"+j.id,type:"journey",typeLabel:l.journey,title:localized(j.title),description:localized(j.summary),keywords:[j.id,...j.steps.flat()].join(" "),action:()=>openJourney(j.id)}));
+  FINANCIAL_CONCEPTS.forEach(c=>items.push({id:"concept-"+c.id,type:"concept",typeLabel:l.concept,title:localized(c),description:isArabic()?c.arText:c.enText,keywords:[c.id,c.en,c.ar,c.enText,c.arText,c.enDetail,c.arDetail].join(" "),action:()=>openConcept(c.id)}));
   return items;
 }
 function openModule(id){
@@ -70,6 +71,7 @@ function openFeature(id,index){
   document.querySelector("#features")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
 }
 function openJourney(id){document.querySelector("#journey-tab-"+id)?.click();document.querySelector("#journeys")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
+function openConcept(id){const selector="#financial-map [data-financial-concept="+id+"]";document.querySelector(selector)?.click();document.querySelector("#financial")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.querySelector(selector)?.focus();}
 function render(){
   const l=labels[isArabic()?"ar":"en"];
   const query=input.value.trim().toLocaleLowerCase(isArabic()?"ar":"en");
@@ -79,7 +81,7 @@ function render(){
   if(!currentItems.length){const empty=document.createElement("p");empty.className="quick-nav-empty";empty.textContent=l.empty;results.append(empty);return;}
   currentItems.forEach((item,index)=>{
     const button=document.createElement("button");button.type="button";button.className="quick-nav-option";button.id="quick-nav-option-"+index;button.setAttribute("role","option");button.setAttribute("aria-selected",String(index===activeIndex));
-    const icon=document.createElement("span");icon.className="quick-nav-option-icon";icon.setAttribute("aria-hidden","true");icon.textContent=item.type==="module"?"◈":item.type==="feature"?"✦":item.type==="journey"?"⌁":"↗";
+    const icon=document.createElement("span");icon.className="quick-nav-option-icon";icon.setAttribute("aria-hidden","true");icon.textContent=item.type==="module"?"◈":item.type==="feature"?"✦":item.type==="journey"?"⌁":item.type==="concept"?"◉":"↗";
     const copy=document.createElement("span");copy.className="quick-nav-option-copy";
     const title=document.createElement("span");title.className="quick-nav-option-title";title.textContent=item.title;
     const description=document.createElement("span");description.className="quick-nav-option-description";description.textContent=item.description;
