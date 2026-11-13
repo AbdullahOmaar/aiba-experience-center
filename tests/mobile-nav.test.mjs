@@ -12,6 +12,7 @@ test("mobile section navigation exposes only valid in-page destinations",async()
   assert.ok(nav,"mobile section navigation exists");
   const destinations=[...nav.matchAll(/href="#([^"]+)"/g)].map(match=>match[1]);
   assert.ok(destinations.length>=7);
+  assert.ok(destinations.includes("financial-concepts"));
   for(const destination of destinations)assert.ok(ids.includes(destination),"missing #"+destination);
 });
 test("mobile section navigation has a no-storage scroll-spy implementation",async()=>{
@@ -26,4 +27,13 @@ test("mobile section labels have English and Arabic copy",async()=>{
   assert.ok(source.includes("navTrust:"));
   assert.ok(source.includes("مالي"));
   assert.ok(source.includes("الأمان"));
+});
+
+test("quick-navigation section entries resolve to existing section IDs",async()=>{
+  const html=await readFile(new URL("index.html",root),"utf8");
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  const ids=new Set([...html.matchAll(/id="([^"]+)"/g)].map(match=>match[1]));
+  const destinations=[...source.matchAll(/\{id:"([^"]+)",key:"section/g)].map(match=>match[1]);
+  assert.ok(destinations.length>=9);
+  for(const destination of destinations)assert.ok(ids.has(destination),"missing #"+destination);
 });

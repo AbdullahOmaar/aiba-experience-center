@@ -29,3 +29,14 @@ test("quick navigation provides bilingual accessible search labels and result co
   assert.ok(source.includes("countNone:\"No results\""));
   assert.ok(source.includes("countNone:\"لا توجد نتائج\""));
 });
+
+test("quick navigation hands focus to the destination for every result type",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes("function focusDestination("));
+  assert.ok(source.includes("function focusSection("));
+  assert.ok(source.includes('focusDestination(document.querySelector("#module-detail"),document.querySelector("#module-explorer"))'));
+  assert.ok(source.includes('focusDestination(document.querySelector("#feature-explanation"),document.querySelector("#features"))'));
+  assert.ok(source.includes('focusDestination(stage?.querySelector(".flow-step")||stage,document.querySelector("#journeys"))'));
+  assert.ok(source.includes('focusDestination(card,document.querySelector("#financial-concepts"))'));
+  assert.ok(source.includes("target.focus({preventScroll:true})"));
+});

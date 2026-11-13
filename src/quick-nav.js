@@ -47,34 +47,55 @@ const sections = [
   {id:"module-explorer",key:"sectionExplorer",en:"Module explorer",ar:"استكشاف الوحدات",keywords:"directory search"},
   {id:"features",key:"sectionFeatures",en:"Feature explorer",ar:"استكشاف المميزات",keywords:"responsibilities capability"},
   {id:"journeys",key:"sectionJourneys",en:"Business flows",ar:"مسارات الأعمال",keywords:"journey flow process"},
-  {id:"financial",key:"sectionFinancial",en:"Financial concepts",ar:"المفاهيم المالية",keywords:"invoice payment allocation expense cash report"},
+  {id:"financial-concepts",key:"sectionFinancial",en:"Financial concepts",ar:"المفاهيم المالية",keywords:"invoice payment allocation expense cash report"},
   {id:"ai",key:"sectionAI",en:"AI capabilities",ar:"قدرات الذكاء الاصطناعي",keywords:"assistant intelligence"},
   {id:"trust",key:"sectionTrust",en:"Trust & security",ar:"الثقة والأمان",keywords:"security permissions tenant"},
   {id:"final-entry",key:"sectionFinal",en:"Next step",ar:"الخطوة التالية",keywords:"open aiba"}
 ];
 function buildItems(){
   const l=labels[isArabic()?"ar":"en"];
-  const items=sections.map(s=>({id:"section-"+s.id,type:"section",typeLabel:l.sections,title:s[isArabic()?"ar":"en"],description:l.descriptionSection,keywords:s.keywords,action:()=>document.querySelector("#"+s.id)?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}));
+  const items=sections.map(s=>({id:"section-"+s.id,type:"section",typeLabel:l.sections,title:s[isArabic()?"ar":"en"],description:l.descriptionSection,keywords:s.keywords,action:()=>focusSection(s.id)}));
   MODULES.forEach(m=>items.push({id:"module-"+m.id,type:"module",typeLabel:l.module,title:m.id+" · "+localized(m.title),description:localized(m.short),keywords:[m.id,m.key,localized(m.description),...m.facets.flatMap(f=>f.filter(Boolean))].join(" "),action:()=>openModule(m.id)}));
   MODULES.forEach(m=>m.facets.forEach((f,index)=>items.push({id:"feature-"+m.id+"-"+index,type:"feature",typeLabel:l.feature,title:m.id+" · "+(isArabic()?f[1]:f[0]),description:isArabic()?f[3]:f[2],keywords:[m.id,m.key,...f].join(" "),action:()=>openFeature(m.id,index)})));
   JOURNEYS.forEach(j=>items.push({id:"journey-"+j.id,type:"journey",typeLabel:l.journey,title:localized(j.title),description:localized(j.summary),keywords:[j.id,...j.steps.flat()].join(" "),action:()=>openJourney(j.id)}));
   FINANCIAL_CONCEPTS.forEach(c=>items.push({id:"concept-"+c.id,type:"concept",typeLabel:l.concept,title:localized(c),description:isArabic()?c.arText:c.enText,keywords:[c.id,c.en,c.ar,c.enText,c.arText,c.enDetail,c.arDetail].join(" "),action:()=>openConcept(c.id)}));
   return items;
 }
-function openModule(id){
+function focusDestination(target,scrollTarget=target){
+  if(!target||!scrollTarget)return;
+  const behavior=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
+  scrollTarget.scrollIntoView({behavior,block:"start"});
+  if(!target.matches("a,button,input,textarea,select,[tabindex]"))target.setAttribute("tabindex","-1");
+  target.focus({preventScroll:true});
+}
+function focusSection(id){
+  const section=document.getElementById(id);
+  if(!section)return;
+  focusDestination(section.querySelector("h1,h2,h3")||section,section);
+}
+function openModule(id,moveFocus=true){
   const clear=document.querySelector("#module-clear");
   const search=document.querySelector("#module-search");
-  if(clear) clear.click();
+  if(clear)clear.click();
   if(search){search.value=id;search.dispatchEvent(new Event("input",{bubbles:true}));}
   document.querySelector("#module-grid .module-card")?.click();
+  if(moveFocus)focusDestination(document.querySelector("#module-detail"),document.querySelector("#module-explorer"));
 }
 function openFeature(id,index){
-  openModule(id);
+  openModule(id,false);
   document.querySelectorAll("#module-detail .detail-facet")[index]?.click();
-  document.querySelector("#features")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+  focusDestination(document.querySelector("#feature-explanation"),document.querySelector("#features"));
 }
-function openJourney(id){document.querySelector("#journey-tab-"+id)?.click();document.querySelector("#journeys")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
-function openConcept(id){const selector="#financial-map [data-financial-concept="+id+"]";document.querySelector(selector)?.click();document.querySelector("#financial")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.querySelector(selector)?.focus();}
+function openJourney(id){
+  document.querySelector("#journey-tab-"+id)?.click();
+  const stage=document.querySelector("#journey-stage");
+  focusDestination(stage?.querySelector(".flow-step")||stage,document.querySelector("#journeys"));
+}
+function openConcept(id){
+  const card=document.querySelector("#financial-map [data-financial-concept="+id+"]");
+  card?.click();
+  focusDestination(card,document.querySelector("#financial-concepts"));
+}
 function render(){
   const l=labels[isArabic()?"ar":"en"];
   const query=normalizeSearchText(input.value.trim());
