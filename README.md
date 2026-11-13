@@ -30,7 +30,7 @@ The static validator checks required and duplicate anchors, both navigation cata
 ## Language and accessibility
 - English (LTR) and Arabic (RTL), switched in-place.
 - Responsive layouts for desktop, tablet and mobile, including 320px narrow width.
-- Keyboard-operable module/feature/flow controls with visible focus.
+- Keyboard-operable module/feature/flow controls with visible focus, including focus handoff when interactive panels and option lists re-render.
 - Reduced-motion and forced-colors support.
 - Semantic headings, buttons, links and live announcement regions.
 - Module universe graph and module explorer are separate guided sections; graph selection moves the visitor to detailed module responsibilities.

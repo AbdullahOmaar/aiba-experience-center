@@ -48,7 +48,10 @@ if (!html.includes('role="combobox"') ||
 }
 if (!quickNav.includes('input.setAttribute("aria-activedescendant"') ||
     !quickNav.includes("function focusDestination(") ||
-    !quickNav.includes("destinationOwnsFocus=true")) {
+    !quickNav.includes("destinationOwnsFocus=true") ||
+    !app.includes("function focusFreshTarget(selector)") ||
+    !app.includes('focusFreshTarget("#journey-tab-"+j.id)') ||
+    !app.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")')) {
   throw new Error("Quick-navigation keyboard/focus handoff is incomplete.");
 }
 if (!quickNav.includes("currentItems=matches;") ||

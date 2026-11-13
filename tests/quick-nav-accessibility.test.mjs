@@ -101,3 +101,20 @@ test("quick navigation exposes shortcuts and compacts for short viewports",async
   assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
   assert.ok(css.includes("@media(max-height:360px) and (max-width:760px)"));
 });
+
+test("re-rendered module and feature controls hand focus to replacement controls",async()=>{
+  const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+  assert.ok(source.includes("function focusFreshTarget(selector)"));
+  assert.ok(source.includes('focusFreshTarget("#module-detail .detail-facet:nth-child("+(i+1)+")")'));
+  assert.ok(source.includes('selectModule(m.id,true,"#module-grid .module-card.is-selected")'));
+  assert.ok(source.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")'));
+  assert.ok(source.includes('focusFreshTarget("#feature-explanation .pager-button:first-child")'));
+  assert.ok(source.includes('focusFreshTarget("#feature-explanation .pager-button:last-child")'));
+});
+test("journey and financial selections keep focus after their DOM is re-rendered",async()=>{
+  const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+  assert.ok(source.includes('focusFreshTarget("#journey-tab-"+j.id)'));
+  assert.ok(source.includes('focusFreshTarget("#journey-stage .flow-step:nth-child("+(i+1)+")")'));
+  assert.ok(source.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")'));
+  assert.ok(source.includes('selectModule(id,true,"#module-detail")'));
+});
