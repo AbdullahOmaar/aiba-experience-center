@@ -182,4 +182,8 @@ test("feature and journey step indicators expose accessible progress values",asy
 test("the active exploration trail module exposes current-step semantics",async()=>{
   const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
   assert.ok(source.includes('if(active)b.setAttribute("aria-current","step")'));
+  const start=source.indexOf("function renderExplorationTrail");
+  const end=source.indexOf("function renderModuleCards",start);
+  const trail=source.slice(start,end);
+  assert.ok(!trail.includes('setAttribute("aria-pressed"'));
 });
