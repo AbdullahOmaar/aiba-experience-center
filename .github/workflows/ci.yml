@@ -1,0 +1,23 @@
+name: EXC CI
+on:
+  push:
+    branches: ["main", "master/**"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: Validate and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate static application boundaries
+        run: npm run validate
+      - name: Run content and domain guardrail tests
+        run: npm test
+      - name: Build static artifact
+        run: npm run build

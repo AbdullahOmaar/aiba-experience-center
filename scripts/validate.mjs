@@ -1,0 +1,11 @@
+import { readFile } from "node:fs/promises";
+const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
+const app=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+const css=await readFile(new URL("../styles.css",import.meta.url),"utf8");
+const ids=["main","modules","module-graph","graph-nodes","module-detail","module-grid","features","feature-list","feature-explanation","journeys","journey-tabs","journey-stage","financial-map","ai"];
+const missing=ids.filter(id=>!html.includes('id="'+id+'"'));
+if(missing.length)throw new Error("Missing app anchors: "+missing.join(", "));
+if(!app.includes('document.documentElement.dir=state.lang==="ar"?"rtl":"ltr"'))throw new Error("RTL/LTR handling missing.");
+if(!css.includes("@media(prefers-reduced-motion:reduce)")||!css.includes("@media(forced-colors:active)"))throw new Error("Accessibility media queries missing.");
+if(/fetch\s*\(|XMLHttpRequest|WebSocket|localStorage|sessionStorage|indexedDB/i.test(app))throw new Error("Live data/API coupling is not allowed.");
+console.log("Static validation passed: "+ids.length+" app anchors, RTL/LTR, reduced motion, forced colors and no API/session coupling.");
