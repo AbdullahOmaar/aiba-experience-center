@@ -56,7 +56,7 @@ The static validator checks required and duplicate anchors, both navigation cata
 - Open the bilingual command palette from the header, with `Ctrl/⌘ + K`, or press `/` outside text-entry controls.
 - Search modules, individual responsibilities, explanatory journeys, financial concepts and page sections in Arabic or English. Search normalization ignores common Arabic diacritics/tatweel and common alef/ya variants, plus Latin accent marks. Selecting a financial concept opens its boundary explanation without executing any financial behavior.
 - Navigate results with arrow keys, Home/End, Page Up/Down and Enter; each destination type hands focus to its opened module detail, feature explanation, journey step, financial concept or section heading. the search input exposes combobox/listbox semantics and the active option to assistive technology. The full matching result set is available in a scrollable list, with result positions exposed to assistive technology; result counts, the current query and empty states are announced in English or Arabic. Escape and manual dismissal close the native modal dialog and return focus; selecting a result instead keeps focus on the destination.
-- The palette is client-only and does not persist search history or contact a service.
+- On narrow phones, result type labels move below the title/description so the available width favors the destination name. The palette is client-only and does not persist search history or contact a service.
 
 ## Hosting
 vercel.json configures a static deployment with restrictive response headers. Create a separate Vercel project only after the hosting owner approves the project mapping and domain. Do not add EXC to the AIBA Vercel project.

@@ -71,3 +71,11 @@ test("quick navigation announces the current search query in both languages",asy
   assert.ok(source.includes('resultsFor:"نتائج البحث عن"'));
   assert.ok(source.includes('query?countText+". "+l.resultsFor+" "+input.value.trim():countText'));
 });
+
+test("quick navigation moves type labels below content on narrow phones",async()=>{
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(css.includes("@media(max-width:560px)"));
+  assert.ok(css.includes(".quick-nav-option{grid-template-columns:30px minmax(0,1fr)"));
+  assert.ok(css.includes(".quick-nav-option-type{grid-column:2"));
+  assert.ok(css.includes("@media(max-width:380px)"));
+});

@@ -33,7 +33,7 @@
 .quick-nav-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:11px;border-top:1px solid rgba(139,172,197,.13);color:#71899b;font-size:9px}
 .quick-nav-footer>span:last-child{display:flex;gap:4px}
 [dir="rtl"] .quick-nav-heading h2{letter-spacing:0}
-@media(max-width:560px){.quick-nav-trigger{width:39px;justify-content:center;padding:0}.quick-nav-trigger-label,.quick-nav-trigger kbd{display:none}.quick-nav-panel{gap:12px;padding:16px}.quick-nav-dialog{border-radius:18px}.quick-nav-results{max-height:55dvh}.quick-nav-option{min-height:62px}}
+@media(max-width:560px){.quick-nav-trigger{width:39px;justify-content:center;padding:0}.quick-nav-trigger-label,.quick-nav-trigger kbd{display:none}.quick-nav-panel{gap:12px;padding:16px}.quick-nav-dialog{border-radius:18px}.quick-nav-results{max-height:55dvh}.quick-nav-option{grid-template-columns:30px minmax(0,1fr);gap:8px;row-gap:2px;min-height:68px;padding:9px 10px}.quick-nav-option-type{grid-column:2;justify-self:start;font-size:7px}}@media(max-width:380px){.quick-nav-panel{padding:13px}.quick-nav-option{grid-template-columns:28px minmax(0,1fr);gap:7px;min-height:66px;padding:8px}.quick-nav-option-icon{width:28px;height:28px}}
 @media(prefers-reduced-motion:reduce){.quick-nav-trigger{transition:none}}
 @media(forced-colors:active){.quick-nav-trigger,.quick-nav-close,.quick-nav-option{border:1px solid ButtonText}.quick-nav-option[aria-selected="true"]{outline:2px solid Highlight}}
 
