@@ -56,3 +56,18 @@ test("quick navigation does not restore trigger focus after a destination handof
   assert.ok(source.includes("const keepDestinationFocus=destinationOwnsFocus"));
   assert.ok(source.includes("if(!keepDestinationFocus&&previousFocus?.isConnected)previousFocus.focus()"));
 });
+
+test("quick navigation exposes the full match set and list position metadata",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes("currentItems=matches;"));
+  assert.ok(!source.includes("slice(0,12)"));
+  assert.ok(source.includes('button.setAttribute("aria-posinset",String(index+1))'));
+  assert.ok(source.includes('button.setAttribute("aria-setsize",String(currentItems.length))'));
+  assert.ok(source.includes("button.tabIndex=-1"));
+});
+test("quick navigation announces the current search query in both languages",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes('resultsFor:"Search results for"'));
+  assert.ok(source.includes('resultsFor:"نتائج البحث عن"'));
+  assert.ok(source.includes('query?countText+". "+l.resultsFor+" "+input.value.trim():countText'));
+});

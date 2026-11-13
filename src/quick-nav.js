@@ -27,7 +27,7 @@ const labels = {
     descriptionSection:"Jump to this part of the experience", descriptionModule:"Open the module and its responsibilities",
     descriptionFeature:"Open this specific responsibility", descriptionJourney:"Open this explanatory journey", descriptionConcept:"Open this financial concept boundary",
     open:"Open", close:"Close quick navigation", title:"Where would you like to go?",
-    placeholder:"Search modules, features, concepts or sections…", searchLabel:"Search the experience", resultsLabel:"Navigation results", countNone:"No results", countMany:"{count} results", countLimited:"Showing {shown} of {total} results", hint:"Search in English or Arabic · ↑ ↓ Home End PgUp PgDn Enter"
+    placeholder:"Search modules, features, concepts or sections…", searchLabel:"Search the experience", resultsLabel:"Navigation results", countNone:"No results", countMany:"{count} results", resultsFor:"Search results for", hint:"Search in English or Arabic · ↑ ↓ Home End PgUp PgDn Enter"
   },
   ar: {
     sections:"قسم", module:"وحدة", feature:"ميزة", journey:"مسار", concept:"مفهوم مالي",
@@ -38,7 +38,7 @@ const labels = {
     descriptionSection:"انتقل إلى هذا الجزء من التجربة", descriptionModule:"افتح الوحدة ومسؤولياتها",
     descriptionFeature:"افتح المسؤولية المحددة", descriptionJourney:"افتح المسار التوضيحي", descriptionConcept:"افتح حدود هذا المفهوم المالي",
     open:"فتح", close:"إغلاق التنقل السريع", title:"تحب تروح فين؟",
-    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", searchLabel:"ابحث داخل التجربة", resultsLabel:"نتائج التنقل", countNone:"لا توجد نتائج", countMany:"عدد النتائج: {count}", countLimited:"عرض {shown} من {total} نتيجة", hint:"ابحث بالعربي أو الإنجليزي · ↑ ↓ Home End PgUp PgDn ثم Enter"
+    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", searchLabel:"ابحث داخل التجربة", resultsLabel:"نتائج التنقل", countNone:"لا توجد نتائج", countMany:"عدد النتائج: {count}", resultsFor:"نتائج البحث عن", hint:"ابحث بالعربي أو الإنجليزي · ↑ ↓ Home End PgUp PgDn ثم Enter"
   }
 };
 const sections = [
@@ -103,16 +103,16 @@ function render(){
   const query=normalizeSearchText(input.value.trim());
   const matches=buildItems().filter(item=>!query||normalizeSearchText([item.title,item.description,item.keywords,item.typeLabel].join(" ")).includes(query));
   const total=matches.length;
-  currentItems=matches.slice(0,12);
+  currentItems=matches;
   results.replaceChildren();
   activeIndex=0;
   results.setAttribute("aria-label",l.resultsLabel);
-  const countText=total===0?l.countNone:total>12?l.countLimited.replace("{shown}",String(currentItems.length)).replace("{total}",String(total)):l.countMany.replace("{count}",String(total));
+  const countText=total===0?l.countNone:l.countMany.replace("{count}",String(total));
   count.textContent=countText;
-  status.textContent=total===0?countText+". "+l.empty:countText;
+  status.textContent=total===0?countText+". "+l.empty:query?countText+". "+l.resultsFor+" "+input.value.trim():countText;
   if(!currentItems.length){const empty=document.createElement("p");empty.className="quick-nav-empty";empty.textContent=l.empty;results.append(empty);input.removeAttribute("aria-activedescendant");return;}
   currentItems.forEach((item,index)=>{
-    const button=document.createElement("button");button.type="button";button.className="quick-nav-option";button.id="quick-nav-option-"+index;button.setAttribute("role","option");button.setAttribute("aria-selected",String(index===activeIndex));
+    const button=document.createElement("button");button.type="button";button.className="quick-nav-option";button.id="quick-nav-option-"+index;button.tabIndex=-1;button.setAttribute("role","option");button.setAttribute("aria-selected",String(index===activeIndex));button.setAttribute("aria-posinset",String(index+1));button.setAttribute("aria-setsize",String(currentItems.length));
     const icon=document.createElement("span");icon.className="quick-nav-option-icon";icon.setAttribute("aria-hidden","true");icon.textContent=item.type==="module"?"◈":item.type==="feature"?"✦":item.type==="journey"?"⌁":item.type==="concept"?"◉":"↗";
     const copy=document.createElement("span");copy.className="quick-nav-option-copy";
     const title=document.createElement("span");title.className="quick-nav-option-title";title.textContent=item.title;
