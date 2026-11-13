@@ -94,6 +94,13 @@ if (!explorerStyles.includes("@media(max-height:560px)") ||
     !explorerStyles.includes("@media(max-height:360px) and (max-width:760px)")) {
   throw new Error("Short-viewport Quick Navigation layouts are incomplete.");
 }
+if (!styles.includes(".quick-nav-trigger,.language-toggle,.mobile-section-nav a{min-height:44px}") ||
+    !explorerStyles.includes(".exploration-trail-items{grid-template-columns:repeat(4,minmax(0,1fr))") ||
+    !explorerStyles.includes(".exploration-trail-item{min-height:44px") ||
+    !explorerStyles.includes(".module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}") ||
+    !explorerStyles.includes(".quick-nav-close{width:44px;height:44px}")) {
+  throw new Error("Mobile touch-target sizing or exploration-trail density is incomplete.");
+}
 if (!searchNormalizer.includes(String.raw`[\u0300-\u036f]`) ||
     !searchNormalizer.includes(String.raw`[\u064b-\u065f\u0670\u0640]`)) {
   throw new Error("Bilingual search normalization ranges are incomplete.");
