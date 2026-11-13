@@ -39,7 +39,7 @@
 .financial-detail-kicker,.ai-detail-kicker,.trust-detail-kicker{color:#48d9c4;font-size:9px;font-weight:850;letter-spacing:.14em}
 .financial-detail-title,.ai-detail-title,.trust-detail-title{margin:9px 0 5px;color:#e4f0f5;font-size:16px}
 .financial-detail-description,.ai-detail-description,.trust-detail-description{max-width:880px;margin:0;color:#9ab0bf;font-size:11px;line-height:1.75}
-.ai-pillar,.trust-card{appearance:none;font-family:inherit;color:inherit;text-align:start;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.ai-pillar,.trust-card{appearance:none;font-family:inherit;font-size:inherit;line-height:inherit;color:inherit;text-align:start;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
 .ai-pillar:hover,.ai-pillar.is-active,.trust-card:hover,.trust-card.is-active{border-color:rgba(58,216,196,.55);background:rgba(16,57,68,.92);box-shadow:0 0 24px rgba(45,212,191,.08)}
 .ai-pillar.is-active,.trust-card.is-active{outline:1px solid rgba(58,216,196,.32)}
 .ai-pillar p,.trust-card p{pointer-events:none}
