@@ -130,11 +130,11 @@ input.addEventListener("keydown",event=>{
   else if(event.key==="Enter"){event.preventDefault();choose(activeIndex);}
 });
 document.addEventListener("keydown",event=>{
-  if(dialog.open||event.altKey||event.ctrlKey||event.metaKey)return;
+  if(dialog.open||event.altKey)return;
+  if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();open();return;}
   const target=event.target;
   const typing=target instanceof HTMLElement&&(target.isContentEditable||["INPUT","TEXTAREA","SELECT"].includes(target.tagName));
-  if(!typing&&(event.key==="/"||event.key.toLowerCase()==="k")){event.preventDefault();open();}
-  if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();open();}
+  if(!typing&&event.key==="/"){event.preventDefault();open();}
 });
 new MutationObserver(()=>{if(dialog.open){syncLanguage();render();}else syncLanguage();}).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
 syncLanguage();
