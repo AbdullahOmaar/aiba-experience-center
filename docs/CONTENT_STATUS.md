@@ -10,7 +10,7 @@
 | Gated | A dependent approval, contract or qualified review is still required before implementation/behavior can be represented as approved. | Not permission to invent rules or show posting behavior. |
 | Source-dependent | The reporting capability depends on verified upstream sources and approved accounting/reconciliation contracts. | Not permission to show invented balances, KPIs or financial statements. |
 
-The interface's `scope`, `gated` and `dependent` values are presentation states only. They are not live release flags.
+The interface's `scope`, `gated` and `dependent` values are presentation states only. They are not live release flags. M07 and M08 are both included in the Production V1 charter: the former has gated implementation/posting behavior, while the latter depends on approved source data and accounting foundations.
 
 ## Module catalogue
 
@@ -22,8 +22,8 @@ The interface's `scope`, `gated` and `dependent` values are presentation states 
 | M04 | Purchasing | In V1 scope | Purchase orders, approval and receiving are distinct. Supplier bills/payables and payment behavior are not inferred by the visual map. |
 | M05 | Inventory | In V1 scope | Products, categories, units, warehouses and recorded stock movements. Balances derive from movement history; valuation/COGS requires its approved contract. |
 | M06 | Expenses & Cash | In V1 scope | Expense records, cashboxes and cash transactions. An incurred expense is not automatically a cash settlement. |
-| M07 | Accounting Core | Gated | Chart of Accounts, Journal Entries/Lines and ledger concepts are in the charter; implementation/posting behavior remains gated by the T44 accounting work package and approved financial contracts. |
-| M08 | Financial Reports & Dashboard | Source-dependent | Reporting must preserve source, currency, period and limitations. Ledger-dependent statements wait for approved accounting foundations and reconciled source data. |
+| M07 | Accounting Core | In V1 scope — implementation gated | Chart of Accounts, Journal Entries/Lines and ledger concepts are in the charter; implementation/posting behavior remains gated by the T44 accounting work package and approved financial contracts. |
+| M08 | Financial Reports & Dashboard | In V1 scope — source-dependent | Reporting must preserve source, currency, period and limitations. Ledger-dependent statements wait for approved accounting foundations and reconciled source data. |
 
 ## Cross-cutting capabilities and financial invariants
 

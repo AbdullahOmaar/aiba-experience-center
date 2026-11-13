@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 
 const read = path => readFile(new URL("../" + path, import.meta.url), "utf8");
-const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles, vercelText, packageText, contentText, screenshotInventory, responsiveMatrix, lockText] = await Promise.all([
+const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles, vercelText, packageText, contentText, screenshotInventory, responsiveMatrix, lockText, contentStatusDoc] = await Promise.all([
   read("index.html"),
   read("src/app.js"),
   read("src/quick-nav.js"),
@@ -14,7 +14,8 @@ const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles,
   read("src/content.js"),
   read("docs/SCREENSHOT_INVENTORY.md"),
   read("docs/RESPONSIVE_UX_MATRIX.md"),
-  read("package-lock.json")
+  read("package-lock.json"),
+  read("docs/CONTENT_STATUS.md")
 ]);
 
 const ids = [...html.matchAll(/id="([^"]+)"/g)].map(match => match[1]);
@@ -151,7 +152,7 @@ if (pkg.scripts.build !== "npm run validate && npm test && node scripts/build.mj
 if (vercel.buildCommand !== "npm run build" || vercel.installCommand !== "npm ci --ignore-scripts" || vercel.outputDirectory !== "dist") {
   throw new Error("Static hosting must build and publish the dist directory independently.");
 }
-if (/<img\\b/i.test(html) || !screenshotInventory.includes("No application screenshots are included")) {
+if (/<img\b/i.test(html) || !screenshotInventory.includes("No application screenshots are included")) {
   throw new Error("Screenshot inventory must reflect the current no-screenshot application source.");
 }
 if (!responsiveMatrix.includes("Rendered phone/tablet/desktop checks:** NOT RUN") ||
@@ -169,6 +170,12 @@ for (const [id, expected] of [["M01","scope"],["M02","scope"],["M03","scope"],["
 }
 if (!contentText.includes('id:"M07"') || !contentText.includes('id:"M08"')) {
   throw new Error("The complete M01-M08 module catalogue is required.");
+}
+
+if (!contentStatusDoc.includes("| M07 | Accounting Core | In V1 scope — implementation gated |") ||
+    !contentStatusDoc.includes("| M08 | Financial Reports & Dashboard | In V1 scope — source-dependent |") ||
+    !contentStatusDoc.includes("AI is a cross-cutting assistive layer, not a ninth V1 module")) {
+  throw new Error("Content status provenance must preserve the charter scope and cross-cutting AI boundary.");
 }
 
 console.log(

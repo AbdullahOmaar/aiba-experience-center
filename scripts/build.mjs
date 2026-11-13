@@ -1,7 +1,6 @@
 import { access, cp, mkdir, readFile, readdir, rm } from "node:fs/promises";
 
 const outputRoot = new URL("../dist/", import.meta.url);
-const sourceRoot = new URL("../", import.meta.url);
 const publishPaths = ["index.html", "styles.css", "explorer.css", "src"];
 
 await rm(outputRoot, { recursive: true, force: true });

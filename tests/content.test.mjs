@@ -17,6 +17,8 @@ test("module detail context links resolve only to existing journeys and financia
 test("module status labels distinguish charter scope from gated and source-dependent work",()=>{
   assert.deepEqual(MODULES.filter(x=>x.status==="scope").map(x=>x.id),["M01","M02","M03","M04","M05","M06"]);
   assert.equal(MODULES.find(x=>x.id==="M07").status,"gated");
+  assert.match(MODULES.find(x=>x.id==="M07").short.en,/In V1 scope.*implementation gated/);
+  assert.match(MODULES.find(x=>x.id==="M07").short.ar,/ضمن نطاق V1.*خاضع للاعتماد/);
   assert.equal(MODULES.find(x=>x.id==="M08").status,"dependent");
 });
 test("financial concepts preserve invoice, payment, allocation and expense/cash boundaries",()=>{
