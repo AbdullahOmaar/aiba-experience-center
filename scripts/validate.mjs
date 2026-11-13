@@ -50,6 +50,11 @@ if (!quickNav.includes('input.setAttribute("aria-activedescendant"') ||
     !quickNav.includes("function focusDestination(") ||
     !quickNav.includes("destinationOwnsFocus=true") ||
     !app.includes("function focusFreshTarget(selector)") ||
+    !app.includes('target.setAttribute("tabindex","-1");target.focus();') ||
+    !app.includes('selectModule(m.id,true,"#module-detail")') ||
+    !app.includes('selectModule(next.id,false,"#graph-nodes .node-"+next.id)') ||
+    !app.includes('selectModule(m.id,false,"#module-grid .module-card.is-selected")') ||
+    !app.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")') ||
     !app.includes('focusFreshTarget("#journey-tab-"+j.id)') ||
     !app.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")')) {
   throw new Error("Quick-navigation keyboard/focus handoff is incomplete.");

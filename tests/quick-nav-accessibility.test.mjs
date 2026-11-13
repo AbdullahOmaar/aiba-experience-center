@@ -108,7 +108,6 @@ test("re-rendered module and feature controls hand focus to replacement controls
   assert.ok(source.includes('target.setAttribute("tabindex","-1");target.focus();'));
   assert.ok(source.includes('selectModule(m.id,false,"#module-grid .module-card.is-selected")'));
   assert.ok(source.includes('focusFreshTarget("#module-detail .detail-facet:nth-child("+(i+1)+")")'));
-  assert.ok(source.includes('selectModule(m.id,true,"#module-grid .module-card.is-selected")'));
   assert.ok(source.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")'));
   assert.ok(source.includes('focusFreshTarget("#feature-explanation .pager-button:first-child")'));
   assert.ok(source.includes('focusFreshTarget("#feature-explanation .pager-button:last-child")'));
@@ -119,4 +118,15 @@ test("journey and financial selections keep focus after their DOM is re-rendered
   assert.ok(source.includes('focusFreshTarget("#journey-stage .flow-step:nth-child("+(i+1)+")")'));
   assert.ok(source.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")'));
   assert.ok(source.includes('selectModule(id,true,"#module-detail")'));
+});
+
+test("all rerendered module entry points preserve focus in their replacement view",async()=>{
+  const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+  assert.ok(source.includes('b.addEventListener("click",()=>selectModule(m.id,true,"#module-detail"))'));
+  assert.ok(source.includes('selectModule(next.id,false,"#graph-nodes .node-"+next.id)'));
+  assert.ok(source.includes('selectModule(m.id,true,"#module-detail")'));
+  assert.ok(source.includes('selectModule(m.id,false,"#module-grid .module-card.is-selected")'));
+  assert.ok(source.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")'));
+  assert.ok(source.includes('selectModule(target.id,false,"#module-detail")'));
+  assert.ok(source.includes('selectModule(id,false,"#feature-explanation")'));
 });
