@@ -69,8 +69,19 @@ if (!styles.includes("@media(prefers-reduced-motion:reduce)") ||
 }
 if (!mobileNav.includes("IntersectionObserver") ||
     !mobileNav.includes('aria-current","location"') ||
-    !mobileNav.includes("nav.getClientRects().length")) {
-  throw new Error("Mobile scroll-spy or visibility guard is incomplete.");
+    !mobileNav.includes("nav.getClientRects().length") ||
+    !mobileNav.includes("const focusSection=id=>") ||
+    !mobileNav.includes("focusSection(id)") ||
+    !mobileNav.includes('heading.focus({preventScroll:true})')) {
+  throw new Error("Mobile scroll-spy, visibility guard or focus handoff is incomplete.");
+}
+if (!html.includes('aria-keyshortcuts="Control+K Meta+K /"')) {
+  throw new Error("Quick-navigation keyboard shortcut semantics are missing.");
+}
+if (!explorerStyles.includes("@media(max-height:560px)") ||
+    !explorerStyles.includes("@media(max-height:440px) and (max-width:760px)") ||
+    !explorerStyles.includes("@media(max-height:360px) and (max-width:760px)")) {
+  throw new Error("Short-viewport Quick Navigation layouts are incomplete.");
 }
 if (!searchNormalizer.includes(String.raw`[\u0300-\u036f]`) ||
     !searchNormalizer.includes(String.raw`[\u064b-\u065f\u0670\u0640]`)) {

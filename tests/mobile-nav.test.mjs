@@ -20,6 +20,9 @@ test("mobile section navigation exposes only valid in-page destinations",async()
 test("mobile section navigation has a no-storage scroll-spy implementation",async()=>{
   const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
   assert.ok(source.includes("IntersectionObserver"));
+  assert.ok(source.includes("const focusSection=id=>"));
+  assert.ok(source.includes("focusSection(id)"));
+  assert.ok(source.includes("heading.focus({preventScroll:true})"));
   assert.ok(source.includes("aria-current"));
   assert.ok(!/localStorage|sessionStorage|fetch\s*\(|XMLHttpRequest/.test(source));
 });

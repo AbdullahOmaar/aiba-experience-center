@@ -92,3 +92,12 @@ test("quick navigation shortcut is exposed to assistive technology",async()=>{
   const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
   assert.ok(html.includes('aria-keyshortcuts="Control+K Meta+K /"'));
 });
+
+test("quick navigation exposes shortcuts and compacts for short viewports",async()=>{
+  const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(html.includes('aria-keyshortcuts="Control+K Meta+K /"'));
+  assert.ok(css.includes("@media(max-height:560px)"));
+  assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
+  assert.ok(css.includes("@media(max-height:360px) and (max-width:760px)"));
+});
