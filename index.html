@@ -10,7 +10,7 @@
 <a class="skip-link" href="#main" data-copy="skip">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="#top" aria-label="AIBA Experience Center home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-word">AIBA<small>EXPERIENCE CENTER</small></span></a>
-  <nav class="desktop-nav" aria-label="Main navigation"><a href="#transformation" data-copy="navStory">Story</a><a href="#modules" data-copy="navModules">Modules</a><a href="#features" data-copy="navFeatures">Features</a><a href="#journeys" data-copy="navJourneys">Business flows</a><a href="#ai" data-copy="navAI">AI & trust</a></nav>
+  <nav class="desktop-nav" aria-label="Main navigation"><a href="#transformation" data-copy="navStory">Story</a><a href="#modules" data-copy="navModules">Modules</a><a href="#module-explorer" data-copy="navExplorer">Explore</a><a href="#features" data-copy="navFeatures">Features</a><a href="#journeys" data-copy="navJourneys">Business flows</a><a href="#ai" data-copy="navAI">AI & trust</a></nav>
   <div class="header-actions"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language">عربي</button><a class="header-cta" href="#modules"><span data-copy="explore">Explore AIBA</span><span aria-hidden="true">↗</span></a></div>
 </header>
 <main id="main">
@@ -67,20 +67,26 @@
 </section>
 
 <section class="section-shell section-block" id="modules" aria-labelledby="modules-title">
-  <div class="section-heading"><div><span class="section-kicker" data-copy="sectionOneKicker">THE PRODUCT MAP</span><h2 id="modules-title" data-copy="modulesTitle">Explore the module universe</h2><p data-copy="modulesIntro">Select a module to understand its place in the business ecosystem and the responsibilities defined for it.</p></div><span class="section-side-note"><span class="status-dot"></span><span data-copy="scopeDefined">Production V1 scope map</span></span></div>
-  <div class="module-explorer">
+  <div class="section-heading"><div><span class="section-kicker" data-copy="sectionOneKicker">THE PRODUCT MAP</span><h2 id="modules-title" data-copy="modulesTitle">Explore the module universe</h2><p data-copy="modulesIntro">Select a node to see how it fits within the broader product map. Highlighted links are explanatory, not automated integrations.</p></div><span class="section-side-note"><span class="status-dot"></span><span data-copy="scopeDefined">Production V1 scope map</span></span></div>
     <div class="graph-panel"><div class="panel-topline"><span data-copy="ecosystemGraph">ECOSYSTEM GRAPH</span><span class="graph-hint" data-copy="selectNode">Select a node</span></div>
       <div class="graph-canvas" id="module-graph" aria-label="Interactive module graph">
-        <svg class="graph-edges" viewBox="0 0 760 460" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#3b6680" stroke-width="1.5" opacity=".62"><path d="M380 230 Q380 115 380 55"/><path d="M380 230 Q250 100 180 105"/><path d="M380 230 Q510 100 580 105"/><path d="M380 230 Q120 210 90 230"/><path d="M380 230 Q640 210 670 230"/><path d="M380 230 Q250 350 180 355"/><path d="M380 230 Q510 350 580 355"/><path d="M380 230 Q380 390 380 415"/></g></svg>
-        <div class="graph-hub"><span class="hub-mark" aria-hidden="true">A</span><strong>AIBA</strong><small data-copy="connectedCore">CONNECTED CORE</small></div><g id="relationship-edges" fill="none" stroke="#38d9c2" stroke-width="2" stroke-linecap="round"></g><div class="graph-nodes" id="graph-nodes"></div>
+        <svg class="graph-edges" viewBox="0 0 760 460" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#3b6680" stroke-width="1.5" opacity=".62"><path d="M380 230 Q380 115 380 55"/><path d="M380 230 Q250 100 180 105"/><path d="M380 230 Q510 100 580 105"/><path d="M380 230 Q120 210 90 230"/><path d="M380 230 Q640 210 670 230"/><path d="M380 230 Q250 350 180 355"/><path d="M380 230 Q510 350 580 355"/><path d="M380 230 Q380 390 380 415"/></g><g id="relationship-edges" fill="none" stroke="#38d9c2" stroke-width="2" stroke-linecap="round"></g></svg>
+        <div class="graph-hub"><span class="hub-mark" aria-hidden="true">A</span><strong>AIBA</strong><small data-copy="connectedCore">CONNECTED CORE</small></div><div class="graph-nodes" id="graph-nodes"></div>
       </div>
       <div class="graph-legend"><span><i class="legend-core"></i><span data-copy="legendCore">Product core</span></span><span><i class="legend-module"></i><span data-copy="legendModule">Product module</span></span><span><i class="legend-active"></i><span data-copy="legendSelected">Selected module</span></span><span><i class="legend-related"></i><span data-copy="legendRelated">Mapped relationship</span></span></div><p class="graph-disclaimer" data-copy="graphDisclaimer">Highlighted links explain a documented relationship; they do not represent automated data synchronization.</p>
     </div>
-    <aside class="module-detail" id="module-detail" aria-live="polite" aria-atomic="true" tabindex="-1"></aside>
-  </div>
   <p class="mobile-graph-note" data-copy="mobileGraphNote">On mobile, use the searchable module directory below for a clearer view.</p>
-  <div class="module-directory-tools" aria-label="Module search and filters"><label class="module-search-wrap"><span class="sr-only" data-copy="moduleSearchLabel">Search modules</span><span class="search-glyph" aria-hidden="true">⌕</span><input id="module-search" type="search" autocomplete="off" placeholder="Search modules, responsibilities or concepts…" /></label><label class="module-filter-wrap"><span class="sr-only" data-copy="moduleFilterLabel">Filter modules</span><select id="module-filter"><option value="all">All modules</option><option value="scope">In V1 scope</option><option value="gated">Gated</option><option value="dependent">Source-dependent</option></select></label><button class="module-clear" id="module-clear" type="button">Clear</button><span class="module-result-count" id="module-result-count" aria-live="polite"></span></div><div class="module-grid" id="module-grid" aria-label="Module directory"></div>
   <p class="scope-footnote"><span aria-hidden="true">ⓘ</span><span data-copy="scopeFootnote">Module names follow the Production V1 charter. This map describes approved scope, not a claim that every capability is currently released.</span></p>
+</section>
+<section class="section-shell section-block" id="module-explorer" aria-labelledby="module-explorer-title">
+  <div class="section-heading"><div><span class="section-kicker" data-copy="moduleExplorerKicker">MODULE EXPLORER</span><h2 id="module-explorer-title" data-copy="moduleExplorerTitle">Explore module responsibilities</h2><p data-copy="moduleExplorerIntro">Inspect each module’s purpose, boundaries and documented conceptual relationships.</p></div></div>
+  <div class="module-discovery-layout">
+    <aside class="module-detail" id="module-detail" aria-live="polite" aria-atomic="true" tabindex="-1"></aside>
+    <div class="module-directory-body">
+      <div class="module-directory-tools" aria-label="Module search and filters"><label class="module-search-wrap"><span class="sr-only" data-copy="moduleSearchLabel">Search modules</span><span class="search-glyph" aria-hidden="true">⌕</span><input id="module-search" type="search" autocomplete="off" placeholder="Search modules, responsibilities or concepts…" /></label><label class="module-filter-wrap"><span class="sr-only" data-copy="moduleFilterLabel">Filter modules</span><select id="module-filter"><option value="all">All modules</option><option value="scope">In V1 scope</option><option value="gated">Gated</option><option value="dependent">Source-dependent</option></select></label><button class="module-clear" id="module-clear" type="button">Clear</button><span class="module-result-count" id="module-result-count" aria-live="polite"></span></div>
+      <div class="module-grid" id="module-grid" aria-label="Module directory"></div>
+    </div>
+  </div>
 </section>
 <section class="feature-section"><div class="section-shell section-block" id="features">
   <div class="section-heading"><div><span class="section-kicker" data-copy="sectionTwoKicker">BEYOND THE MODULE NAME</span><h2 data-copy="featureTitle">Explore what each module covers</h2><p data-copy="featureIntro">A guided catalogue of responsibilities — open a card to reveal the explanation and its boundaries.</p></div></div>
