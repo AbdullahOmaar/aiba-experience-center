@@ -15,7 +15,10 @@ test("quick navigation announces counts and places active descendant on the comb
   const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
   assert.ok(source.includes("input.setAttribute(\"aria-activedescendant\""));
   assert.ok(!source.includes("results.setAttribute(\"aria-activedescendant\""));
-  assert.ok(source.includes("countLimited"));
+  assert.ok(source.includes('countMany:"{count} results"'));
+  assert.ok(source.includes('countMany:"عدد النتائج: {count}"'));
+  assert.ok(source.includes('resultsFor:"Search results for"'));
+  assert.ok(source.includes('resultsFor:"نتائج البحث عن"'));
   assert.ok(source.includes("status.textContent"));
   assert.ok(source.includes("aria-expanded"));
   assert.ok(source.includes("PageDown"));
