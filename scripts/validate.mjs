@@ -83,8 +83,10 @@ if (!mobileNav.includes("IntersectionObserver") ||
     !mobileNav.includes('heading.focus({preventScroll:true})')) {
   throw new Error("Mobile scroll-spy, visibility guard or focus handoff is incomplete.");
 }
-if (!html.includes('aria-keyshortcuts="Control+K Meta+K /"')) {
-  throw new Error("Quick-navigation keyboard shortcut semantics are missing.");
+if (!html.includes('aria-keyshortcuts="Control+K Meta+K /"') ||
+    !html.includes("<kbd>Ctrl / ⌘ K</kbd>") ||
+    !explorerStyles.includes("@media(max-width:1040px){.quick-nav-trigger kbd{display:none}}")) {
+  throw new Error("Quick-navigation visible and assistive shortcut hints are incomplete.");
 }
 if (!explorerStyles.includes("@media(max-height:560px)") ||
     !explorerStyles.includes("@media(max-height:440px) and (max-width:760px)") ||

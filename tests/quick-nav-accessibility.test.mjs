@@ -137,3 +137,17 @@ test("quick navigation shows a cross-platform shortcut when header space allows"
   assert.ok(html.includes("<kbd>Ctrl / ⌘ K</kbd>"));
   assert.ok(css.includes("@media(max-width:1040px){.quick-nav-trigger kbd{display:none}}"));
 });
+
+test("cross-platform shortcut hint is hidden when the header becomes compact",async()=>{
+  const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(html.includes("<kbd>Ctrl / ⌘ K</kbd>"));
+  assert.ok(css.includes("@media(max-width:1040px){.quick-nav-trigger kbd{display:none}}"));
+});
+test("performance inventory clearly labels its limitations and open acceptance",async()=>{
+  const readme=await readFile(new URL("../README.md",import.meta.url),"utf8");
+  assert.ok(readme.includes("195,969 raw bytes"));
+  assert.ok(readme.includes("163,043 raw bytes"));
+  assert.ok(readme.includes("uncompressed Git blob sizes only"));
+  assert.ok(readme.includes("AC-16 budget/lazy-loading acceptance remains OPEN"));
+});
