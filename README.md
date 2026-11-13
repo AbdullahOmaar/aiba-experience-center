@@ -36,6 +36,8 @@ For local preview, run a static file server from the repository root.
 - Module universe graph and module explorer are separate guided sections; graph selection moves the visitor to detailed module responsibilities.
 - Searchable module directory with bilingual text matching and scope/status filters; controls reflow for narrow mobile screens.
 - In-session module exploration trail with an accessible progress indicator and direct module shortcuts; progress is intentionally not persisted or sent to a server.
+- Guided module tour advances through unvisited modules in charter order, offers a restart after all eight are explored, and keeps progress session-only.
+- The module relationship graph supports directional keyboard navigation, Home/End shortcuts and focus handoff while preserving the same module selection behavior as pointer interaction.
 - Source-grounded module relationship links with a touch-friendly detail panel; the map is explicitly explanatory and does not imply automatic synchronization.
 - Small-screen layouts replace the dense constellation graph with the searchable module directory as the primary exploration path.
 - A dedicated business transformation story section explains the product narrative from separate business responsibilities to a clearer connected view without showing live records or implying automatic synchronization.
