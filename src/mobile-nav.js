@@ -15,6 +15,13 @@ if(nav){
       activeLink.scrollIntoView({behavior,block:"nearest",inline:"nearest"});
     }
   };
+  const focusSection=id=>{
+    const target=document.getElementById(id);
+    const heading=target?.matches("h1,h2,h3")?target:target?.querySelector("h1,h2,h3");
+    if(!heading)return;
+    if(!heading.matches("a,button,input,textarea,select,[tabindex]"))heading.setAttribute("tabindex","-1");
+    requestAnimationFrame(()=>heading.focus({preventScroll:true}));
+  };
   const initial=location.hash.slice(1);
   if(sections.some(section=>section.id===initial))setCurrent(initial);
   if("IntersectionObserver" in window){
@@ -28,5 +35,6 @@ if(nav){
   links.forEach(link=>link.addEventListener("click",()=>{
     const id=link.getAttribute("href").slice(1);
     setCurrent(id);
+    focusSection(id);
   }));
 }

@@ -56,3 +56,12 @@ test("mobile scroll spy does not auto-scroll a hidden desktop navigation rail",a
   const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
   assert.ok(source.includes("if(activeLink&&nav.getClientRects().length)"));
 });
+
+test("mobile rail moves focus to the selected section heading",async()=>{
+  const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
+  assert.ok(source.includes("const focusSection=id=>"));
+  assert.ok(source.includes('target?.querySelector("h1,h2,h3")'));
+  assert.ok(source.includes('heading.setAttribute("tabindex","-1")'));
+  assert.ok(source.includes('heading.focus({preventScroll:true})'));
+  assert.ok(source.includes("focusSection(id)"));
+});
