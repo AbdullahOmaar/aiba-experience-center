@@ -6,7 +6,9 @@ const closeButton = document.querySelector("#quick-nav-close");
 const input = document.querySelector("#quick-nav-search");
 const results = document.querySelector("#quick-nav-results");
 const hint = document.querySelector("#quick-nav-hint");
-if (!dialog || !openButton || !input || !results) throw new Error("Quick navigation markup is incomplete");
+const count = document.querySelector("#quick-nav-count");
+const status = document.querySelector("#quick-nav-status");
+if (!dialog || !openButton || !closeButton || !input || !results || !count || !status) throw new Error("Quick navigation markup is incomplete");
 
 let activeIndex = 0;
 let currentItems = [];
@@ -23,7 +25,7 @@ const labels = {
     descriptionSection:"Jump to this part of the experience", descriptionModule:"Open the module and its responsibilities",
     descriptionFeature:"Open this specific responsibility", descriptionJourney:"Open this explanatory journey", descriptionConcept:"Open this financial concept boundary",
     open:"Open", close:"Close quick navigation", title:"Where would you like to go?",
-    placeholder:"Search modules, features, concepts or sections…", hint:"Search in English or Arabic · Use ↑ ↓ then Enter"
+    placeholder:"Search modules, features, concepts or sections…", searchLabel:"Search the experience", resultsLabel:"Navigation results", countNone:"No results", countMany:"{count} results", countLimited:"Showing {shown} of {total} results", hint:"Search in English or Arabic · Use ↑ ↓ then Enter"
   },
   ar: {
     sections:"قسم", module:"وحدة", feature:"ميزة", journey:"مسار", concept:"مفهوم مالي",
@@ -34,7 +36,7 @@ const labels = {
     descriptionSection:"انتقل إلى هذا الجزء من التجربة", descriptionModule:"افتح الوحدة ومسؤولياتها",
     descriptionFeature:"افتح المسؤولية المحددة", descriptionJourney:"افتح المسار التوضيحي", descriptionConcept:"افتح حدود هذا المفهوم المالي",
     open:"فتح", close:"إغلاق التنقل السريع", title:"تحب تروح فين؟",
-    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", hint:"ابحث بالعربي أو الإنجليزي · استخدم ↑ ↓ ثم Enter"
+    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", searchLabel:"ابحث داخل التجربة", resultsLabel:"نتائج التنقل", countNone:"لا توجد نتائج", countMany:"عدد النتائج: {count}", countLimited:"عرض {shown} من {total} نتيجة", hint:"ابحث بالعربي أو الإنجليزي · استخدم ↑ ↓ ثم Enter"
   }
 };
 const sections = [
@@ -75,10 +77,16 @@ function openConcept(id){const selector="#financial-map [data-financial-concept=
 function render(){
   const l=labels[isArabic()?"ar":"en"];
   const query=input.value.trim().toLocaleLowerCase(isArabic()?"ar":"en");
-  currentItems=buildItems().filter(item=>!query||[item.title,item.description,item.keywords,item.typeLabel].join(" ").toLocaleLowerCase(isArabic()?"ar":"en").includes(query)).slice(0,12);
+  const matches=buildItems().filter(item=>!query||[item.title,item.description,item.keywords,item.typeLabel].join(" ").toLocaleLowerCase(isArabic()?"ar":"en").includes(query));
+  const total=matches.length;
+  currentItems=matches.slice(0,12);
   results.replaceChildren();
   activeIndex=0;
-  if(!currentItems.length){const empty=document.createElement("p");empty.className="quick-nav-empty";empty.textContent=l.empty;results.append(empty);return;}
+  results.setAttribute("aria-label",l.resultsLabel);
+  const countText=total===0?l.countNone:total>12?l.countLimited.replace("{shown}",String(currentItems.length)).replace("{total}",String(total)):l.countMany.replace("{count}",String(total));
+  count.textContent=countText;
+  status.textContent=total===0?countText+". "+l.empty:countText;
+  if(!currentItems.length){const empty=document.createElement("p");empty.className="quick-nav-empty";empty.textContent=l.empty;results.append(empty);input.removeAttribute("aria-activedescendant");return;}
   currentItems.forEach((item,index)=>{
     const button=document.createElement("button");button.type="button";button.className="quick-nav-option";button.id="quick-nav-option-"+index;button.setAttribute("role","option");button.setAttribute("aria-selected",String(index===activeIndex));
     const icon=document.createElement("span");icon.className="quick-nav-option-icon";icon.setAttribute("aria-hidden","true");icon.textContent=item.type==="module"?"◈":item.type==="feature"?"✦":item.type==="journey"?"⌁":item.type==="concept"?"◉":"↗";
@@ -91,13 +99,13 @@ function render(){
     button.addEventListener("click",()=>choose(index));
     results.append(button);
   });
-  results.setAttribute("aria-activedescendant","quick-nav-option-0");
+  input.setAttribute("aria-activedescendant","quick-nav-option-0");
 }
 function setActive(index){
   if(!currentItems.length)return;
   activeIndex=(index+currentItems.length)%currentItems.length;
   [...results.querySelectorAll(".quick-nav-option")].forEach((button,i)=>button.setAttribute("aria-selected",String(i===activeIndex)));
-  results.setAttribute("aria-activedescendant","quick-nav-option-"+activeIndex);
+  input.setAttribute("aria-activedescendant","quick-nav-option-"+activeIndex);
   results.querySelector("#quick-nav-option-"+activeIndex)?.scrollIntoView({block:"nearest"});
 }
 function choose(index){
@@ -110,6 +118,7 @@ function open(){
   syncLanguage();
   render();
   dialog.showModal();
+  input.setAttribute("aria-expanded","true");
   requestAnimationFrame(()=>input.focus());
 }
 function syncLanguage(){
@@ -119,12 +128,14 @@ function syncLanguage(){
   closeButton.setAttribute("aria-label",l.close);
   document.querySelector("#quick-nav-title").textContent=l.title;
   input.placeholder=l.placeholder;
+  input.setAttribute("aria-label",l.searchLabel);
+  results.setAttribute("aria-label",l.resultsLabel);
   hint.textContent=l.hint;
 }
 openButton.addEventListener("click",open);
 closeButton.addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-dialog.addEventListener("close",()=>{if(previousFocus?.isConnected)previousFocus.focus();});
+dialog.addEventListener("close",()=>{input.setAttribute("aria-expanded","false");input.removeAttribute("aria-activedescendant");if(previousFocus?.isConnected)previousFocus.focus();});
 input.addEventListener("input",render);
 input.addEventListener("keydown",event=>{
   if(event.key==="ArrowDown"){event.preventDefault();setActive(activeIndex+1);}

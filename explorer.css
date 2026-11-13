@@ -69,3 +69,8 @@
 .module-context-link:focus-visible{outline:2px solid #62decf;outline-offset:3px}
 @media(max-width:560px){.module-context-actions{display:grid;grid-template-columns:1fr}.module-context-link{width:100%;min-height:44px;text-align:center}}
 @media(prefers-reduced-motion:reduce){.module-context-link{transition:none}}
+
+
+/* Accessible quick-navigation result feedback */
+.quick-nav-count{margin:-5px 2px -7px;color:#91aabd;font-size:10px;font-weight:750;font-variant-numeric:tabular-nums}
+.quick-nav-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

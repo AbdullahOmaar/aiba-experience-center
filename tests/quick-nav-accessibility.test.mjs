@@ -1,0 +1,28 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+
+const root=new URL("../",import.meta.url);
+test("quick navigation search exposes a complete combobox relationship",async()=>{
+  const html=await readFile(new URL("index.html",root),"utf8");
+  assert.ok(html.includes("role=\"combobox\""));
+  assert.ok(html.includes("aria-controls=\"quick-nav-results\""));
+  assert.ok(html.includes("id=\"quick-nav-results\" role=\"listbox\""));
+  assert.ok(html.includes("id=\"quick-nav-status\" aria-live=\"polite\""));
+  assert.ok(html.includes("id=\"quick-nav-count\""));
+});
+test("quick navigation announces counts and places active descendant on the combobox",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes("input.setAttribute(\"aria-activedescendant\""));
+  assert.ok(!source.includes("results.setAttribute(\"aria-activedescendant\""));
+  assert.ok(source.includes("countLimited"));
+  assert.ok(source.includes("status.textContent"));
+  assert.ok(source.includes("aria-expanded"));
+});
+test("quick navigation provides bilingual accessible search labels and result counts",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes("searchLabel:\"Search the experience\""));
+  assert.ok(source.includes("searchLabel:\"ابحث داخل التجربة\""));
+  assert.ok(source.includes("countNone:\"No results\""));
+  assert.ok(source.includes("countNone:\"لا توجد نتائج\""));
+});

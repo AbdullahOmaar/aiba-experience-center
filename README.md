@@ -55,7 +55,7 @@ For local preview, run a static file server from the repository root.
 ## Global quick navigation
 - Open the bilingual command palette from the header, with `Ctrl/⌘ + K`, or press `/` outside text-entry controls.
 - Search modules, individual responsibilities, explanatory journeys, financial concepts and page sections in Arabic or English. Selecting a financial concept opens its boundary explanation without executing any financial behavior.
-- Navigate results with arrow keys and Enter; Escape closes the native modal dialog and returns focus.
+- Navigate results with arrow keys and Enter; the search input exposes combobox/listbox semantics and the active option to assistive technology. Result counts and empty states are announced in English or Arabic. Escape closes the native modal dialog and returns focus.
 - The palette is client-only and does not persist search history or contact a service.
 
 ## Hosting
