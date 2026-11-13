@@ -61,7 +61,9 @@ if (!app.includes('document.documentElement.dir=state.lang==="ar"?"rtl":"ltr"'))
 }
 if (!styles.includes("@media(prefers-reduced-motion:reduce)") ||
     !styles.includes("@media(forced-colors:active)") ||
-    !explorerStyles.includes("mobile-section-nav")) {
+    !styles.includes(".mobile-section-nav") ||
+    !explorerStyles.includes(".quick-nav-option") ||
+    !explorerStyles.includes(".quick-nav-dialog")) {
   throw new Error("Responsive/accessibility CSS is incomplete.");
 }
 if (!mobileNav.includes("IntersectionObserver") ||
