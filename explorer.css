@@ -41,3 +41,11 @@
 .exploration-tour-action{justify-self:start;min-height:42px;padding:0 16px;border:1px solid rgba(45,212,191,.38);border-radius:999px;background:linear-gradient(110deg,rgba(13,148,136,.22),rgba(96,165,250,.13));color:#c8fff3;font:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:transform .2s ease,border-color .2s ease,background .2s ease}.exploration-tour-action:hover{transform:translateY(-1px);border-color:rgba(45,212,191,.72);background:rgba(13,148,136,.25)}.exploration-tour-action:focus-visible{outline:2px solid #67e8f9;outline-offset:3px}.exploration-tour-complete{margin:0;color:#9fc4c5;font-size:11px;line-height:1.6}
 @media(max-width:520px){.exploration-tour-action{width:100%;min-height:46px}.exploration-trail{padding:12px}.exploration-trail-items{gap:4px}.exploration-trail-item{min-height:36px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.exploration-tour-action{transition:none}}
+
+/* Step-scoped module context in explanatory business journeys */
+.journey-related-modules{margin-top:18px;padding:14px 15px;border:1px solid rgba(58,207,190,.16);border-radius:13px;background:linear-gradient(110deg,rgba(13,55,62,.28),rgba(12,29,47,.42))}
+.journey-related-modules .detail-overline{display:block;margin:0 0 9px;color:#55d9c7;font-size:9px;font-weight:850;letter-spacing:.12em}
+.journey-related-modules .feature-related-chips{margin-top:0;gap:7px}
+.journey-related-modules .feature-related-chip{min-height:38px;padding-inline:13px}
+@media(max-width:560px){.journey-related-modules{margin-top:14px;padding:12px}.journey-related-modules .feature-related-chip{min-height:42px;flex:1 1 100%;text-align:center}}
+@media(prefers-reduced-motion:reduce){.journey-related-modules .feature-related-chip{transition:none}}
