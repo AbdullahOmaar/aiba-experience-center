@@ -21,3 +21,12 @@ export const FINANCIAL_CONCEPTS = [
 {id:"cash",symbol:"▣",en:"Cash movement",ar:"حركة نقدية",enText:"A separate cash transaction or settlement record.",arText:"سجل مستقل لمعاملة أو تسوية نقدية."},
 {id:"report",symbol:"▥",en:"Report",ar:"التقرير",enText:"A view that should preserve each source, period and currency.",arText:"عرض يحافظ على مصدر كل معلومة وفترتها وعملتها."}
 ];
+
+// Explicitly explanatory relationships grounded in the approved concept journeys.
+// These links describe shared business context, not automatic data synchronization.
+export const MODULE_RELATIONSHIPS = [
+{id:"workspace-relationships",from:"M01",to:"M02",label:{en:"Workspace & membership context",ar:"سياق مساحة العمل والعضوية"},description:{en:"Business identity and workspace membership define the context for customer and supplier relationships.",ar:"هوية المنشأة وعضوية مساحة العمل تحددان سياق علاقات العملاء والموردين."},basis:"workspace-access"},
+{id:"receiving-inventory",from:"M04",to:"M05",label:{en:"Receiving & stock movement",ar:"الاستلام وحركة المخزون"},description:{en:"The purchasing journey distinguishes an approved order from a receiving record; received items are represented through inventory movements.",ar:"مسار المشتريات يفرق بين اعتماد الأمر وسجل الاستلام؛ والأصناف المستلمة تُمثل من خلال حركات المخزون."},basis:"purchase-receiving"},
+{id:"sales-reporting",from:"M03",to:"M08",label:{en:"Sales sources & reporting context",ar:"مصادر المبيعات وسياق التقارير"},description:{en:"Reports must preserve the separate meaning and source of invoices, recorded payments and allocations; this does not define ledger posting or financial calculations.",ar:"تحافظ التقارير على المعنى والمصدر المستقلين للفواتير والمدفوعات المسجلة والتخصيصات؛ ولا يحدد ذلك ترحيلًا محاسبيًا أو حسابات مالية."},basis:"invoice-payment-reporting"},
+{id:"accounting-reporting-gate",from:"M07",to:"M08",label:{en:"Ledger-dependent reporting (gated)",ar:"تقارير تعتمد على الدفتر (خاضعة للاعتماد)"},description:{en:"Ledger-dependent financial statements depend on an approved accounting foundation. M07 remains gated and M08 remains source-dependent.",ar:"القوائم المالية المعتمدة على الدفتر تتطلب أساسًا محاسبيًا معتمدًا. تظل M07 خاضعة للاعتماد وM08 مرتبطة بالمصدر."},basis:"accounting-reporting-dependency"}
+];
