@@ -47,6 +47,11 @@ For local preview, run a static file server from the repository root.
 - AI capability and Trust principle maps are keyboard/touch selectable and reveal source-grounded explanations; no AI API or live audit/security view is exposed.
 - Module exploration progress is tracked only in the current page session, with no browser storage or server-side persistence.
 
+## Mobile navigation
+- On phones, a persistent horizontal section rail keeps the main destinations reachable without relying on the desktop menu.
+- The active section is indicated as the visitor scrolls; links remain native in-page anchors and work without JavaScript.
+- The rail supports touch scrolling, RTL layout, keyboard focus, reduced motion and forced-colors. It does not store navigation history or contact a service.
+
 ## Global quick navigation
 - Open the bilingual command palette from the header, with `Ctrl/⌘ + K`, or press `/` outside text-entry controls.
 - Search modules, individual responsibilities, explanatory journeys, financial concepts and page sections in Arabic or English. Selecting a financial concept opens its boundary explanation without executing any financial behavior.
