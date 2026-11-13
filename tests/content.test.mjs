@@ -11,3 +11,5 @@ test("business concept maps are bilingual and structured",()=>{assert.ok(JOURNEY
 test("module visual positions are unique and statuses are explicit",()=>{const p=MODULES.map(x=>x.position.join(","));assert.equal(new Set(p).size,p.length);for(const m of MODULES)assert.ok(["scope","gated","dependent"].includes(m.status));});
 
 test("sales journey and financial concepts cross-reference only matching explanatory steps",()=>{const sales=JOURNEYS.find(x=>x.id==="sales");assert.deepEqual(sales.stepConcepts,["invoice","payment","allocation","report"]);for(const c of FINANCIAL_CONCEPTS.filter(x=>x.journeyRef)){assert.equal(sales.stepConcepts[c.journeyRef.step],c.id);assert.equal(sales.steps.length>c.journeyRef.step,true);}});
+
+test("module detail context links resolve only to existing journeys and financial concepts",()=>{for(const m of MODULES){if(m.journeyRef){const j=JOURNEYS.find(x=>x.id===m.journeyRef.id);assert.ok(j);assert.ok(m.journeyRef.step>=0&&m.journeyRef.step<j.steps.length);}for(const id of m.conceptRefs||[])assert.ok(FINANCIAL_CONCEPTS.some(c=>c.id===id));}});
