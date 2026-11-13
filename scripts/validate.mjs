@@ -100,6 +100,9 @@ if (!explorerStyles.includes("@media(max-height:560px)") ||
   throw new Error("Short-viewport Quick Navigation layouts are incomplete.");
 }
 if (!styles.includes(".quick-nav-trigger,.language-toggle,.mobile-section-nav a{min-height:44px}") ||
+    !styles.includes("@media(max-width:1020px)") ||
+    !styles.includes(".graph-node{min-height:44px;padding:8px 9px}") ||
+    !explorerStyles.includes("@media(max-width:1020px)") ||
     !explorerStyles.includes(".exploration-trail-items{grid-template-columns:repeat(4,minmax(0,1fr))") ||
     !explorerStyles.includes(".exploration-trail-item{min-height:44px") ||
     !explorerStyles.includes(".module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}") ||

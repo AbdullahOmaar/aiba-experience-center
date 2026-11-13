@@ -94,3 +94,9 @@
 @media(max-width:1020px){
   .quick-nav-trigger,.language-toggle,.mobile-section-nav a{min-height:44px}
 }
+
+
+/* Tablet graph nodes remain comfortably tappable */
+@media(max-width:1020px){
+  .graph-node{min-height:44px;padding:8px 9px}
+}

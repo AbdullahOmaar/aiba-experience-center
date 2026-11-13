@@ -85,3 +85,15 @@ test("mobile navigation and exploration trail use larger touch targets",async()=
   assert.ok(explorer.includes(".exploration-trail-item{min-height:44px"));
   assert.ok(explorer.includes(".module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}"));
 });
+
+test("tablet graph nodes and exploration controls use touch-sized targets",async()=>{
+  const styles=await readFile(new URL("../styles.css",root),"utf8");
+  const explorer=await readFile(new URL("../explorer.css",root),"utf8");
+  assert.ok(styles.includes("@media(max-width:1020px)"));
+  assert.ok(styles.includes(".graph-node{min-height:44px;padding:8px 9px}"));
+  assert.ok(explorer.includes("@media(max-width:1020px)"));
+  assert.ok(explorer.includes(".exploration-trail-item{min-height:44px"));
+  assert.ok(explorer.includes(".journey-tab"));
+  assert.ok(explorer.includes(".pager-button"));
+  assert.ok(explorer.includes(".module-context-link"));
+});

@@ -121,3 +121,13 @@
   .quick-nav-close{width:44px;height:44px}
   .quick-nav-search{min-height:44px}
 }
+
+
+/* Tablet touch-target sizing follows the compact section rail */
+@media(max-width:1020px){
+  .exploration-trail-items{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .exploration-trail-item{min-height:44px;font-size:9px}
+  .module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}
+  .detail-facet,.pager-button,.journey-tab,.journey-step-button,.feature-related-chip,.module-context-link,.journey-related-modules .feature-related-chip,.journey-related-concept-link,.financial-journey-link{min-height:44px}
+  .exploration-tour-action{min-height:46px}
+}
