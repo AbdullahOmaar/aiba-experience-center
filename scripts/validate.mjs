@@ -33,6 +33,7 @@ if (!mobileNavBlock) throw new Error("Mobile section navigation markup missing."
 const mobileTargets = [...mobileNavBlock.matchAll(/href="#([^"]+)"/g)].map(match => match[1]);
 const missingMobileTargets = mobileTargets.filter(id => !idSet.has(id));
 if (missingMobileTargets.length) throw new Error("Broken mobile navigation targets: " + missingMobileTargets.join(", "));
+if (mobileTargets.length !== 10) throw new Error("Mobile navigation must expose all ten story sections.");
 
 const quickTargets = [...quickNav.matchAll(/\{id:"([^"]+)",key:"section/g)].map(match => match[1]);
 const missingQuickTargets = quickTargets.filter(id => !idSet.has(id));

@@ -11,7 +11,9 @@ test("mobile section navigation exposes only valid in-page destinations",async()
   const nav=start>=0&&end>=0?html.slice(start,end+6):"";
   assert.ok(nav,"mobile section navigation exists");
   const destinations=[...nav.matchAll(/href="#([^"]+)"/g)].map(match=>match[1]);
-  assert.ok(destinations.length>=7);
+  assert.equal(destinations.length,10);
+  assert.ok(destinations.includes("top"));
+  assert.ok(destinations.includes("final-entry"));
   assert.ok(destinations.includes("financial-concepts"));
   for(const destination of destinations)assert.ok(ids.includes(destination),"missing #"+destination);
 });
@@ -23,6 +25,10 @@ test("mobile section navigation has a no-storage scroll-spy implementation",asyn
 });
 test("mobile section labels have English and Arabic copy",async()=>{
   const source=await readFile(new URL("src/app.js",root),"utf8");
+  assert.ok(source.includes("navTop:"));
+  assert.ok(source.includes("navNextStep:"));
+  assert.ok(source.includes("أعلى الصفحة"));
+  assert.ok(source.includes("الخطوة التالية"));
   assert.ok(source.includes("navFinancial:"));
   assert.ok(source.includes("navTrust:"));
   assert.ok(source.includes("مالي"));
