@@ -86,7 +86,7 @@ test("quick navigation remains bounded and usable in short phone viewports",asyn
   assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
   assert.ok(css.includes("@media(max-height:360px) and (max-width:760px)"));
   assert.ok(css.includes(".quick-nav-results{max-height:31dvh"));
-  assert.ok(css.includes(".quick-nav-close{width:32px;height:32px}"));
+  assert.ok(css.includes(".quick-nav-close{width:44px;height:44px}"));
 });
 test("quick navigation shortcut is exposed to assistive technology",async()=>{
   const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
