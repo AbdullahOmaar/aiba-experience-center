@@ -88,3 +88,9 @@
 }
 @media(prefers-reduced-motion:reduce){.mobile-section-nav a{transition:none}}
 @media(forced-colors:active){.mobile-section-nav a[aria-current="location"]{outline:2px solid Highlight;border-color:Highlight}}
+
+
+/* Compact-header touch targets */
+@media(max-width:1020px){
+  .quick-nav-trigger,.language-toggle,.mobile-section-nav a{min-height:44px}
+}

@@ -151,3 +151,10 @@ test("performance inventory clearly labels its limitations and open acceptance",
   assert.ok(readme.includes("uncompressed Git blob sizes only"));
   assert.ok(readme.includes("AC-16 budget/lazy-loading acceptance remains OPEN"));
 });
+
+test("quick navigation controls retain 44px touch targets in short viewports",async()=>{
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(css.includes(".quick-nav-trigger{min-height:44px}"));
+  assert.ok(css.includes(".quick-nav-close{width:44px;height:44px}"));
+  assert.ok(css.includes(".quick-nav-search{min-height:44px}"));
+});

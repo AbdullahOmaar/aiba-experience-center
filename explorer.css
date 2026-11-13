@@ -105,3 +105,19 @@
 
 /* Keep the desktop shortcut hint from crowding compact headers */
 @media(max-width:1040px){.quick-nav-trigger kbd{display:none}}
+
+
+/* Mobile touch-target sizing and trail density */
+@media(max-width:760px){
+  .exploration-trail-items{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  .exploration-trail-item{min-height:44px;font-size:9px}
+  .module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}
+  .detail-facet,.pager-button,.journey-tab,.journey-step-button,.feature-related-chip,.module-context-link,.journey-related-modules .feature-related-chip,.journey-related-concept-link,.financial-journey-link{min-height:44px}
+  .exploration-tour-action{min-height:46px}
+}
+.quick-nav-trigger{min-height:44px}
+.quick-nav-close{width:44px;height:44px}
+@media(max-height:440px) and (max-width:760px){
+  .quick-nav-close{width:44px;height:44px}
+  .quick-nav-search{min-height:44px}
+}

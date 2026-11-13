@@ -76,3 +76,12 @@ test("compact tablet headers use the section rail before the narrow-phone layout
   assert.ok(css.includes(".mobile-section-nav{display:flex"));
   assert.ok(css.includes("@media(max-width:760px)"));
 });
+
+test("mobile navigation and exploration trail use larger touch targets",async()=>{
+  const styles=await readFile(new URL("../styles.css",root),"utf8");
+  const explorer=await readFile(new URL("../explorer.css",root),"utf8");
+  assert.ok(styles.includes(".quick-nav-trigger,.language-toggle,.mobile-section-nav a{min-height:44px}"));
+  assert.ok(explorer.includes("grid-template-columns:repeat(4,minmax(0,1fr))"));
+  assert.ok(explorer.includes(".exploration-trail-item{min-height:44px"));
+  assert.ok(explorer.includes(".module-search-wrap,.module-filter-wrap,.module-clear{min-height:44px}"));
+});

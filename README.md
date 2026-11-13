@@ -50,7 +50,7 @@ The static validator checks required and duplicate anchors, both navigation cata
 ## Mobile navigation
 - On phones and compact tablet widths (<=1020px), a persistent horizontal section rail exposes all ten story sections from Hero/Top through Final Entry, without relying on the desktop menu.
 - The active section is indicated as the visitor scrolls, and its chip stays visible in the horizontal rail; links remain native in-page anchors and work without JavaScript. When JavaScript is available, selecting a rail link moves keyboard focus to that section heading.
-- The rail supports touch scrolling, RTL layout, keyboard focus, reduced motion and forced-colors. It does not store navigation history or contact a service.
+- The rail supports touch scrolling, RTL layout, keyboard focus, reduced motion and forced-colors. Mobile trail chips and primary interactive controls use larger 44px touch targets where their layout permits. It does not store navigation history or contact a service.
 
 ## Global quick navigation
 - Open the bilingual command palette from the header, with `Ctrl/⌘ + K`, or press `/` outside text-entry controls.
