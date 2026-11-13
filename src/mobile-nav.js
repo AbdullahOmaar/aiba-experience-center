@@ -3,10 +3,17 @@ if(nav){
   const links=[...nav.querySelectorAll('a[href^="#"]')];
   const sections=links.map(link=>document.querySelector(link.getAttribute("href"))).filter(Boolean);
   const setCurrent=id=>{
+    let activeLink=null;
     links.forEach(link=>{
-      if(link.getAttribute("href")==="#"+id)link.setAttribute("aria-current","location");
-      else link.removeAttribute("aria-current");
+      if(link.getAttribute("href")==="#"+id){
+        link.setAttribute("aria-current","location");
+        activeLink=link;
+      }else link.removeAttribute("aria-current");
     });
+    if(activeLink){
+      const behavior=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
+      activeLink.scrollIntoView({behavior,block:"nearest",inline:"nearest"});
+    }
   };
   const initial=location.hash.slice(1);
   if(sections.some(section=>section.id===initial))setCurrent(initial);

@@ -49,7 +49,7 @@ For local preview, run a static file server from the repository root.
 
 ## Mobile navigation
 - On phones, a persistent horizontal section rail keeps the main destinations reachable without relying on the desktop menu.
-- The active section is indicated as the visitor scrolls; links remain native in-page anchors and work without JavaScript.
+- The active section is indicated as the visitor scrolls, and its chip stays visible in the horizontal rail; links remain native in-page anchors and work without JavaScript.
 - The rail supports touch scrolling, RTL layout, keyboard focus, reduced motion and forced-colors. It does not store navigation history or contact a service.
 
 ## Global quick navigation

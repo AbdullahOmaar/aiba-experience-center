@@ -37,3 +37,10 @@ test("quick-navigation section entries resolve to existing section IDs",async()=
   assert.ok(destinations.length>=9);
   for(const destination of destinations)assert.ok(ids.has(destination),"missing #"+destination);
 });
+
+test("active mobile section chip remains visible in the horizontal rail",async()=>{
+  const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
+  assert.ok(source.includes('link.setAttribute("aria-current","location")'));
+  assert.ok(source.includes('activeLink.scrollIntoView({behavior,block:"nearest",inline:"nearest"})'));
+  assert.ok(source.includes('matchMedia("(prefers-reduced-motion: reduce)")'));
+});
