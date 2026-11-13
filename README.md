@@ -25,7 +25,7 @@ Requires Node.js 22 or newer.
 - npm run validate
 - npm run build
 
-For local preview, run a static file server from the repository root.
+The static validator checks required and duplicate anchors, both navigation catalogues, combobox/focus semantics, responsive/accessibility source markers, the no-network/no-storage boundary, CSP and the dependency-free package contract.\n\nFor local preview, run a static file server from the repository root.
 
 ## Language and accessibility
 - English (LTR) and Arabic (RTL), switched in-place.
