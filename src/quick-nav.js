@@ -1,4 +1,5 @@
 import { MODULES, JOURNEYS, FINANCIAL_CONCEPTS } from "./content.js";
+import { normalizeSearchText } from "./search-normalization.js";
 
 const dialog = document.querySelector("#quick-nav-dialog");
 const openButton = document.querySelector("#quick-nav-open");
@@ -25,7 +26,7 @@ const labels = {
     descriptionSection:"Jump to this part of the experience", descriptionModule:"Open the module and its responsibilities",
     descriptionFeature:"Open this specific responsibility", descriptionJourney:"Open this explanatory journey", descriptionConcept:"Open this financial concept boundary",
     open:"Open", close:"Close quick navigation", title:"Where would you like to go?",
-    placeholder:"Search modules, features, concepts or sections…", searchLabel:"Search the experience", resultsLabel:"Navigation results", countNone:"No results", countMany:"{count} results", countLimited:"Showing {shown} of {total} results", hint:"Search in English or Arabic · Use ↑ ↓ then Enter"
+    placeholder:"Search modules, features, concepts or sections…", searchLabel:"Search the experience", resultsLabel:"Navigation results", countNone:"No results", countMany:"{count} results", countLimited:"Showing {shown} of {total} results", hint:"Search in English or Arabic · ↑ ↓ Home End PgUp PgDn Enter"
   },
   ar: {
     sections:"قسم", module:"وحدة", feature:"ميزة", journey:"مسار", concept:"مفهوم مالي",
@@ -36,7 +37,7 @@ const labels = {
     descriptionSection:"انتقل إلى هذا الجزء من التجربة", descriptionModule:"افتح الوحدة ومسؤولياتها",
     descriptionFeature:"افتح المسؤولية المحددة", descriptionJourney:"افتح المسار التوضيحي", descriptionConcept:"افتح حدود هذا المفهوم المالي",
     open:"فتح", close:"إغلاق التنقل السريع", title:"تحب تروح فين؟",
-    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", searchLabel:"ابحث داخل التجربة", resultsLabel:"نتائج التنقل", countNone:"لا توجد نتائج", countMany:"عدد النتائج: {count}", countLimited:"عرض {shown} من {total} نتيجة", hint:"ابحث بالعربي أو الإنجليزي · استخدم ↑ ↓ ثم Enter"
+    placeholder:"ابحث عن وحدة أو ميزة أو مفهوم أو قسم…", searchLabel:"ابحث داخل التجربة", resultsLabel:"نتائج التنقل", countNone:"لا توجد نتائج", countMany:"عدد النتائج: {count}", countLimited:"عرض {shown} من {total} نتيجة", hint:"ابحث بالعربي أو الإنجليزي · ↑ ↓ Home End PgUp PgDn ثم Enter"
   }
 };
 const sections = [
@@ -76,8 +77,8 @@ function openJourney(id){document.querySelector("#journey-tab-"+id)?.click();doc
 function openConcept(id){const selector="#financial-map [data-financial-concept="+id+"]";document.querySelector(selector)?.click();document.querySelector("#financial")?.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.querySelector(selector)?.focus();}
 function render(){
   const l=labels[isArabic()?"ar":"en"];
-  const query=input.value.trim().toLocaleLowerCase(isArabic()?"ar":"en");
-  const matches=buildItems().filter(item=>!query||[item.title,item.description,item.keywords,item.typeLabel].join(" ").toLocaleLowerCase(isArabic()?"ar":"en").includes(query));
+  const query=normalizeSearchText(input.value.trim());
+  const matches=buildItems().filter(item=>!query||normalizeSearchText([item.title,item.description,item.keywords,item.typeLabel].join(" ")).includes(query));
   const total=matches.length;
   currentItems=matches.slice(0,12);
   results.replaceChildren();
@@ -140,6 +141,10 @@ input.addEventListener("input",render);
 input.addEventListener("keydown",event=>{
   if(event.key==="ArrowDown"){event.preventDefault();setActive(activeIndex+1);}
   else if(event.key==="ArrowUp"){event.preventDefault();setActive(activeIndex-1);}
+  else if(event.key==="Home"){event.preventDefault();setActive(0);}
+  else if(event.key==="End"){event.preventDefault();setActive(currentItems.length-1);}
+  else if(event.key==="PageDown"){event.preventDefault();setActive(activeIndex+5);}
+  else if(event.key==="PageUp"){event.preventDefault();setActive(activeIndex-5);}
   else if(event.key==="Enter"){event.preventDefault();choose(activeIndex);}
 });
 document.addEventListener("keydown",event=>{

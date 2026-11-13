@@ -18,6 +18,9 @@ test("quick navigation announces counts and places active descendant on the comb
   assert.ok(source.includes("countLimited"));
   assert.ok(source.includes("status.textContent"));
   assert.ok(source.includes("aria-expanded"));
+  assert.ok(source.includes("PageDown"));
+  assert.ok(source.includes("PageUp"));
+  assert.ok(source.includes("normalizeSearchText"));
 });
 test("quick navigation provides bilingual accessible search labels and result counts",async()=>{
   const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
