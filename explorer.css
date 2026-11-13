@@ -36,3 +36,8 @@
 @media(max-width:560px){.quick-nav-trigger{width:39px;justify-content:center;padding:0}.quick-nav-trigger-label,.quick-nav-trigger kbd{display:none}.quick-nav-panel{gap:12px;padding:16px}.quick-nav-dialog{border-radius:18px}.quick-nav-results{max-height:55dvh}.quick-nav-option{min-height:62px}}
 @media(prefers-reduced-motion:reduce){.quick-nav-trigger{transition:none}}
 @media(forced-colors:active){.quick-nav-trigger,.quick-nav-close,.quick-nav-option{border:1px solid ButtonText}.quick-nav-option[aria-selected="true"]{outline:2px solid Highlight}}
+
+/* Guided module tour actions */
+.exploration-tour-action{justify-self:start;min-height:42px;padding:0 16px;border:1px solid rgba(45,212,191,.38);border-radius:999px;background:linear-gradient(110deg,rgba(13,148,136,.22),rgba(96,165,250,.13));color:#c8fff3;font:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:transform .2s ease,border-color .2s ease,background .2s ease}.exploration-tour-action:hover{transform:translateY(-1px);border-color:rgba(45,212,191,.72);background:rgba(13,148,136,.25)}.exploration-tour-action:focus-visible{outline:2px solid #67e8f9;outline-offset:3px}.exploration-tour-complete{margin:0;color:#9fc4c5;font-size:11px;line-height:1.6}
+@media(max-width:520px){.exploration-tour-action{width:100%;min-height:46px}.exploration-trail{padding:12px}.exploration-trail-items{gap:4px}.exploration-trail-item{min-height:36px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.exploration-tour-action{transition:none}}
