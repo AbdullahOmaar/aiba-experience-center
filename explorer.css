@@ -59,3 +59,13 @@
 .financial-journey-link{margin-top:14px}
 @media(max-width:560px){.journey-related-concept-link,.financial-journey-link{width:100%;min-height:44px;text-align:center}.journey-related-concepts{padding:12px}}
 @media(prefers-reduced-motion:reduce){.journey-related-concept-link,.financial-journey-link{transition:none}}
+
+/* Module Explorer links into the matching explanatory journeys and concepts */
+.module-context-links{display:grid;gap:9px;margin:14px 0;padding:13px 15px;border:1px solid rgba(54,207,190,.2);border-radius:13px;background:linear-gradient(110deg,rgba(13,55,62,.22),rgba(12,29,47,.36))}
+.module-context-links .detail-overline{color:#62decf;font-size:9px;font-weight:850;letter-spacing:.12em}
+.module-context-actions{display:flex;flex-wrap:wrap;gap:7px}
+.module-context-link{min-height:39px;padding:0 13px;border:1px solid rgba(54,207,190,.3);border-radius:999px;background:rgba(13,148,136,.1);color:#c9f8ef;font:inherit;font-size:10px;font-weight:800;cursor:pointer}
+.module-context-link:hover{border-color:rgba(54,207,190,.7);background:rgba(13,148,136,.2)}
+.module-context-link:focus-visible{outline:2px solid #62decf;outline-offset:3px}
+@media(max-width:560px){.module-context-actions{display:grid;grid-template-columns:1fr}.module-context-link{width:100%;min-height:44px;text-align:center}}
+@media(prefers-reduced-motion:reduce){.module-context-link{transition:none}}
