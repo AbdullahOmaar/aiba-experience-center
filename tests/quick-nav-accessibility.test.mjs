@@ -171,3 +171,15 @@ test("quick navigation never downgrades the close target in short landscape",asy
   assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
   assert.ok(css.includes(".quick-nav-close{width:44px;height:44px}"));
 });
+
+test("feature and journey step indicators expose accessible progress values",async()=>{
+  const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+  assert.ok(source.includes('featureProgressAria:"Feature progress"'));
+  assert.ok(source.includes('featureProgressAria:"تقدم المسؤولية"'));
+  assert.ok(source.includes('track.setAttribute("aria-valuemin","1");track.setAttribute("aria-valuemax",String(item.facets.length));track.setAttribute("aria-valuenow",String(state.featureIndex+1))'));
+  assert.ok(source.includes('track.setAttribute("aria-valuemin","1");track.setAttribute("aria-valuemax",String(j.steps.length));track.setAttribute("aria-valuenow",String(state.journeyStep+1))'));
+});
+test("the active exploration trail module exposes current-step semantics",async()=>{
+  const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
+  assert.ok(source.includes('if(active)b.setAttribute("aria-current","step")'));
+});

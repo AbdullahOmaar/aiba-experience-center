@@ -61,7 +61,10 @@ if (!quickNav.includes('input.setAttribute("aria-activedescendant"') ||
     !app.includes('selectModule(m.id,false,"#module-grid .module-card.is-selected")') ||
     !app.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")') ||
     !app.includes('focusFreshTarget("#journey-tab-"+j.id)') ||
-    !app.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")')) {
+    !app.includes('focusFreshTarget("#financial-map [data-financial-concept="+c.id+"]")') ||
+    !app.includes('track.setAttribute("aria-valuemax",String(item.facets.length))') ||
+    !app.includes('track.setAttribute("aria-valuemax",String(j.steps.length))') ||
+    !app.includes('if(active)b.setAttribute("aria-current","step")')) {
   throw new Error("Quick-navigation keyboard/focus handoff is incomplete.");
 }
 if (!quickNav.includes("currentItems=matches;") ||

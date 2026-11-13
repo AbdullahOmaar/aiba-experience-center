@@ -34,7 +34,7 @@ For local preview, run a static file server from the repository root.
 - Responsive layouts for desktop, tablet and mobile, including 320px narrow width.
 - Keyboard-operable module/feature/flow controls with visible focus, including focus handoff when interactive panels and option lists re-render.
 - Reduced-motion and forced-colors support.
-- Semantic headings, buttons, links and live announcement regions.
+- Semantic headings, buttons, links, live announcement regions and ARIA progress values for feature/journey steps and the active exploration-trail module.
 - Module universe graph and module explorer are separate guided sections; graph selection moves the visitor to detailed module responsibilities.
 - Searchable module directory with bilingual text matching and scope/status filters; controls reflow for narrow mobile screens.
 - In-session module exploration trail with an accessible progress indicator and direct module shortcuts; progress is intentionally not persisted or sent to a server.
