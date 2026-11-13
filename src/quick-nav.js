@@ -14,6 +14,7 @@ if (!dialog || !openButton || !closeButton || !input || !results || !count || !s
 let activeIndex = 0;
 let currentItems = [];
 let previousFocus = null;
+let destinationOwnsFocus = false;
 const isArabic = () => document.documentElement.lang === "ar";
 const localized = value => isArabic() ? value.ar : value.en;
 const labels = {
@@ -133,7 +134,9 @@ function setActive(index){
 }
 function choose(index){
   const item=currentItems[index];if(!item)return;
-  dialog.close();item.action();
+  destinationOwnsFocus=true;
+  dialog.close();
+  item.action();
 }
 function open(){
   previousFocus=document.activeElement;
@@ -158,7 +161,13 @@ function syncLanguage(){
 openButton.addEventListener("click",open);
 closeButton.addEventListener("click",()=>dialog.close());
 dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close();});
-dialog.addEventListener("close",()=>{input.setAttribute("aria-expanded","false");input.removeAttribute("aria-activedescendant");if(previousFocus?.isConnected)previousFocus.focus();});
+dialog.addEventListener("close",()=>{
+  input.setAttribute("aria-expanded","false");
+  input.removeAttribute("aria-activedescendant");
+  const keepDestinationFocus=destinationOwnsFocus;
+  destinationOwnsFocus=false;
+  if(!keepDestinationFocus&&previousFocus?.isConnected)previousFocus.focus();
+});
 input.addEventListener("input",render);
 input.addEventListener("keydown",event=>{
   if(event.key==="ArrowDown"){event.preventDefault();setActive(activeIndex+1);}

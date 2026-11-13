@@ -48,3 +48,11 @@ test("financial concept navigation focuses the re-rendered selected card",async(
   const focusIndex=source.indexOf('focusDestination(selectedCard,document.querySelector("#financial-concepts"))',refreshIndex);
   assert.ok(clickIndex>=0&&refreshIndex>clickIndex&&focusIndex>refreshIndex);
 });
+
+test("quick navigation does not restore trigger focus after a destination handoff",async()=>{
+  const source=await readFile(new URL("src/quick-nav.js",root),"utf8");
+  assert.ok(source.includes("let destinationOwnsFocus = false;"));
+  assert.ok(source.includes("destinationOwnsFocus=true"));
+  assert.ok(source.includes("const keepDestinationFocus=destinationOwnsFocus"));
+  assert.ok(source.includes("if(!keepDestinationFocus&&previousFocus?.isConnected)previousFocus.focus()"));
+});
