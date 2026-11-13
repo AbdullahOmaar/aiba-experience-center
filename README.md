@@ -76,3 +76,16 @@ Static Git tree snapshot at candidate `2451a76e069d9814f1ff30452caa8606d5c69238`
 - Package: no runtime or development dependencies; static HTML/CSS and native ES modules.
 
 These are uncompressed Git blob sizes only. They do not represent gzip/Brotli transfer size, browser request timing, rendering/interaction metrics, memory, or a Lighthouse result. No agreed numeric performance budget or asset-size threshold is recorded; the AC-16 budget/lazy-loading acceptance remains OPEN pending Owner agreement and runtime evidence.
+
+## Content and screenshot provenance
+- `docs/CONTENT_STATUS.md` records the M01–M08 source-grounded scope labels and the distinction between charter scope and release availability.
+- `docs/SCREENSHOT_INVENTORY.md` records that the current experience uses conceptual CSS/DOM/SVG visuals and contains no captured AIBA application screenshots. Future captures require exact-build provenance or the visible label **Illustrative Preview**.
+- `docs/RESPONSIVE_UX_MATRIX.md` records responsive breakpoints and accessibility behaviors present in source. It explicitly distinguishes source inspection from rendered-device acceptance.
+
+## Reproducible static build
+- Requires Node.js 22 or later.
+- Run `npm ci --ignore-scripts` followed by `npm run build`.
+- The build runs source validation and the Node test suite, then copies only the standalone HTML, CSS and native JavaScript application into `dist/`.
+- The build verifies local HTML assets and relative JavaScript imports resolve inside the output directory.
+- `package-lock.json` locks the dependency-free package graph; no runtime or development dependencies are introduced.
+- Vercel's static output is configured as `dist`. Hosting project creation and deployment remain separately gated and are not authorized by this change.

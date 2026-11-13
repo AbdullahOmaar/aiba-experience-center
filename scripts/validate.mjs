@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 
 const read = path => readFile(new URL("../" + path, import.meta.url), "utf8");
-const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles, vercelText, packageText] = await Promise.all([
+const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles, vercelText, packageText, contentText, screenshotInventory, responsiveMatrix, lockText] = await Promise.all([
   read("index.html"),
   read("src/app.js"),
   read("src/quick-nav.js"),
@@ -10,7 +10,11 @@ const [html, app, quickNav, mobileNav, searchNormalizer, styles, explorerStyles,
   read("styles.css"),
   read("explorer.css"),
   read("vercel.json"),
-  read("package.json")
+  read("package.json"),
+  read("src/content.js"),
+  read("docs/SCREENSHOT_INVENTORY.md"),
+  read("docs/RESPONSIVE_UX_MATRIX.md"),
+  read("package-lock.json")
 ]);
 
 const ids = [...html.matchAll(/id="([^"]+)"/g)].map(match => match[1]);
@@ -135,6 +139,36 @@ if (!csp.includes("connect-src 'none'") || !csp.includes("frame-ancestors 'none'
 const pkg = JSON.parse(packageText);
 if (pkg.dependencies || pkg.devDependencies) {
   throw new Error("Initial EXC baseline must remain dependency-free.");
+}
+
+const lock = JSON.parse(lockText);
+if (lock.lockfileVersion !== 3 || lock.packages?.[""]?.name !== pkg.name || lock.packages?.[""]?.version !== pkg.version) {
+  throw new Error("The npm lockfile does not match the root package.");
+}
+if (pkg.scripts.build !== "npm run validate && npm test && node scripts/build.mjs" || !pkg.engines?.node?.startsWith(">=22")) {
+  throw new Error("The reproducible Node.js 22 build contract is incomplete.");
+}
+if (vercel.buildCommand !== "npm run build" || vercel.installCommand !== "npm ci --ignore-scripts" || vercel.outputDirectory !== "dist") {
+  throw new Error("Static hosting must build and publish the dist directory independently.");
+}
+if (/<img\\b/i.test(html) || !screenshotInventory.includes("No application screenshots are included")) {
+  throw new Error("Screenshot inventory must reflect the current no-screenshot application source.");
+}
+if (!responsiveMatrix.includes("Rendered phone/tablet/desktop checks:** NOT RUN") ||
+    !responsiveMatrix.includes("At or below 1020px") ||
+    !responsiveMatrix.includes("At or below 760px")) {
+  throw new Error("Responsive UX matrix or its verification caveat is incomplete.");
+}
+for (const [id, expected] of [["M01","scope"],["M02","scope"],["M03","scope"],["M04","scope"],["M05","scope"],["M06","scope"],["M07","gated"],["M08","dependent"]]) {
+  const moduleStart = contentText.indexOf('id:"' + id + '"');
+  const nextModule = contentText.indexOf('id:"M', moduleStart + 5);
+  const slice = contentText.slice(moduleStart, nextModule < 0 ? undefined : nextModule);
+  if (moduleStart < 0 || !slice.includes('status:"' + expected + '"')) {
+    throw new Error("Source-grounded status mismatch for " + id + ".");
+  }
+}
+if (!contentText.includes('id:"M07"') || !contentText.includes('id:"M08"')) {
+  throw new Error("The complete M01-M08 module catalogue is required.");
 }
 
 console.log(
