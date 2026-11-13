@@ -45,6 +45,12 @@ For local preview, run a static file server from the repository root.
 - AI capability and Trust principle maps are keyboard/touch selectable and reveal source-grounded explanations; no AI API or live audit/security view is exposed.
 - Module exploration progress is tracked only in the current page session, with no browser storage or server-side persistence.
 
+## Global quick navigation
+- Open the bilingual command palette from the header, with `Ctrl/⌘ + K`, or press `/` outside text-entry controls.
+- Search modules, individual responsibilities, explanatory journeys and page sections in Arabic or English.
+- Navigate results with arrow keys and Enter; Escape closes the native modal dialog and returns focus.
+- The palette is client-only and does not persist search history or contact a service.
+
 ## Hosting
 vercel.json configures a static deployment with restrictive response headers. Create a separate Vercel project only after the hosting owner approves the project mapping and domain. Do not add EXC to the AIBA Vercel project.
 
