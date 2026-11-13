@@ -101,3 +101,7 @@
   .quick-nav-footer{font-size:8px}
   .quick-nav-results{max-height:27dvh}
 }
+
+
+/* Keep the desktop shortcut hint from crowding compact headers */
+@media(max-width:1040px){.quick-nav-trigger kbd{display:none}}

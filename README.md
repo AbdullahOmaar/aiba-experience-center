@@ -63,3 +63,14 @@ vercel.json configures a static deployment with restrictive response headers. Cr
 
 ## Source authority
 Module mapping and product boundaries follow the AIBA Production V1 ERP Charter and the canonical EXC Notion reference. A capability must not be labelled Available/Preview/Planned based on appearance alone; verify its source contract and implementation before making a release claim.
+
+
+## Initial performance inventory — 2026-11-13
+
+Static Git tree snapshot at candidate `2451a76e069d9814f1ff30452caa8606d5c69238`:
+- 19 tracked blobs: **195,969 raw bytes** total.
+- Eight application delivery files (HTML, CSS and native JavaScript modules): **163,043 raw bytes** combined.
+- Media/font assets: **0** tracked image, video, icon-font or web-font files.
+- Package: no runtime or development dependencies; static HTML/CSS and native ES modules.
+
+These are uncompressed Git blob sizes only. They do not represent gzip/Brotli transfer size, browser request timing, rendering/interaction metrics, memory, or a Lighthouse result. No agreed numeric performance budget or asset-size threshold is recorded; the AC-16 budget/lazy-loading acceptance remains OPEN pending Owner agreement and runtime evidence.

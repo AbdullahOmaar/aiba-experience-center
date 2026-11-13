@@ -130,3 +130,10 @@ test("all rerendered module entry points preserve focus in their replacement vie
   assert.ok(source.includes('selectModule(target.id,false,"#module-detail")'));
   assert.ok(source.includes('selectModule(id,false,"#feature-explanation")'));
 });
+
+test("quick navigation shows a cross-platform shortcut when header space allows",async()=>{
+  const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(html.includes("<kbd>Ctrl / ⌘ K</kbd>"));
+  assert.ok(css.includes("@media(max-width:1040px){.quick-nav-trigger kbd{display:none}}"));
+});
