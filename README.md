@@ -42,7 +42,7 @@ For local preview, run a static file server from the repository root.
 - Small-screen layouts replace the dense constellation graph with the searchable module directory as the primary exploration path.
 - A dedicated business transformation story section explains the product narrative from separate business responsibilities to a clearer connected view without showing live records or implying automatic synchronization.
 - Feature responsibilities include a step indicator and navigation to mapped related modules.
-- Business journey tabs and their individual steps support keyboard navigation, accessible tab/tabpanel relationships and RTL-aware arrow keys; each journey has step progress, previous/next touch controls and mapped module shortcuts.
+- Business journey tabs and their individual steps support keyboard navigation, accessible tab/tabpanel relationships and RTL-aware arrow keys; each journey has step progress, previous/next touch controls and step-specific module shortcuts that change with the selected concept step. Previous/next controls return focus after updating the step.
 - Financial concepts are selectable and reveal a focused boundary explanation without calculations, posting or settlement logic.
 - AI capability and Trust principle maps are keyboard/touch selectable and reveal source-grounded explanations; no AI API or live audit/security view is exposed.
 - Module exploration progress is tracked only in the current page session, with no browser storage or server-side persistence.
