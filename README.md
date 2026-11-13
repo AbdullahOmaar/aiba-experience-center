@@ -40,7 +40,8 @@ For local preview, run a static file server from the repository root.
 - Small-screen layouts replace the dense constellation graph with the searchable module directory as the primary exploration path.
 - A dedicated business transformation story section explains the product narrative from separate business responsibilities to a clearer connected view without showing live records or implying automatic synchronization.
 - Feature responsibilities include a step indicator and navigation to mapped related modules.
-- Business journey tabs support keyboard navigation and accessible tab/tabpanel relationships; each journey has step progress, previous/next touch controls and mapped module shortcuts.
+- Business journey tabs and their individual steps support keyboard navigation, accessible tab/tabpanel relationships and RTL-aware arrow keys; each journey has step progress, previous/next touch controls and mapped module shortcuts.
+- Module exploration progress is tracked only in the current page session, with no browser storage or server-side persistence.
 
 ## Hosting
 vercel.json configures a static deployment with restrictive response headers. Create a separate Vercel project only after the hosting owner approves the project mapping and domain. Do not add EXC to the AIBA Vercel project.
