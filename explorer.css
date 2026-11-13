@@ -88,7 +88,7 @@
   .quick-nav-dialog{width:calc(100vw - 20px);border-radius:14px}
   .quick-nav-panel{gap:7px;padding:10px}
   .quick-nav-heading h2{margin-top:3px;font-size:17px}
-  .quick-nav-close{width:32px;height:32px}
+  .quick-nav-close{width:44px;height:44px}
   .quick-nav-search{min-height:42px;padding-inline:10px}
   .quick-nav-hint{font-size:9px}
   .quick-nav-results{max-height:31dvh;gap:3px}

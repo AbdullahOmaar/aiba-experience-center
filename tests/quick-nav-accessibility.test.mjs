@@ -161,3 +161,10 @@ test("quick navigation controls retain 44px touch targets in short viewports",as
   assert.ok(css.includes(".quick-nav-close{width:44px;height:44px}"));
   assert.ok(css.includes(".quick-nav-search{min-height:44px}"));
 });
+
+test("quick navigation never downgrades the close target in short landscape",async()=>{
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(!css.includes(".quick-nav-close{width:32px;height:32px}"));
+  assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
+  assert.ok(css.includes(".quick-nav-close{width:44px;height:44px}"));
+});
