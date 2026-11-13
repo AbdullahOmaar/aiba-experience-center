@@ -105,6 +105,8 @@ test("quick navigation exposes shortcuts and compacts for short viewports",async
 test("re-rendered module and feature controls hand focus to replacement controls",async()=>{
   const source=await readFile(new URL("../src/app.js",import.meta.url),"utf8");
   assert.ok(source.includes("function focusFreshTarget(selector)"));
+  assert.ok(source.includes('target.setAttribute("tabindex","-1");target.focus();'));
+  assert.ok(source.includes('selectModule(m.id,false,"#module-grid .module-card.is-selected")'));
   assert.ok(source.includes('focusFreshTarget("#module-detail .detail-facet:nth-child("+(i+1)+")")'));
   assert.ok(source.includes('selectModule(m.id,true,"#module-grid .module-card.is-selected")'));
   assert.ok(source.includes('selectModule(m.id,false,"#feature-list .feature-module.is-active")'));
