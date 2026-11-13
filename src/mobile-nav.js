@@ -10,7 +10,7 @@ if(nav){
         activeLink=link;
       }else link.removeAttribute("aria-current");
     });
-    if(activeLink){
+    if(activeLink&&nav.getClientRects().length){
       const behavior=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
       activeLink.scrollIntoView({behavior,block:"nearest",inline:"nearest"});
     }

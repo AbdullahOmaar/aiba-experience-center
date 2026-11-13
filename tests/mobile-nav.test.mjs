@@ -41,6 +41,12 @@ test("quick-navigation section entries resolve to existing section IDs",async()=
 test("active mobile section chip remains visible in the horizontal rail",async()=>{
   const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
   assert.ok(source.includes('link.setAttribute("aria-current","location")'));
+  assert.ok(source.includes("activeLink&&nav.getClientRects().length"));
   assert.ok(source.includes('activeLink.scrollIntoView({behavior,block:"nearest",inline:"nearest"})'));
   assert.ok(source.includes('matchMedia("(prefers-reduced-motion: reduce)")'));
+});
+
+test("mobile scroll spy does not auto-scroll a hidden desktop navigation rail",async()=>{
+  const source=await readFile(new URL("src/mobile-nav.js",root),"utf8");
+  assert.ok(source.includes("if(activeLink&&nav.getClientRects().length)"));
 });
