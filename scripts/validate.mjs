@@ -71,6 +71,7 @@ if (!app.includes('document.documentElement.dir=state.lang==="ar"?"rtl":"ltr"'))
 if (!styles.includes("@media(prefers-reduced-motion:reduce)") ||
     !styles.includes("@media(forced-colors:active)") ||
     !styles.includes(".mobile-section-nav") ||
+    !styles.includes("@media(max-width:1020px)") ||
     !explorerStyles.includes(".quick-nav-option") ||
     !explorerStyles.includes(".quick-nav-dialog")) {
   throw new Error("Responsive/accessibility CSS is incomplete.");

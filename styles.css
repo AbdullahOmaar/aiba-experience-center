@@ -54,6 +54,18 @@
 
 /* Mobile section navigation — persistent, thumb-friendly wayfinding */
 .mobile-section-nav{display:none}
+@media(max-width:1020px){
+  html{scroll-padding-top:118px}
+  .site-header{min-height:0;flex-wrap:wrap;padding:10px 17px 0;gap:10px;row-gap:8px}
+  .desktop-nav{display:none}
+  .header-actions{margin-inline-start:auto;gap:7px}
+  .header-cta{display:none}
+  .mobile-section-nav{display:flex;flex:0 0 calc(100% + 34px);align-items:center;gap:6px;min-width:0;margin-inline:-17px;padding:7px 17px 9px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:inline proximity;scrollbar-width:none;border-top:1px solid rgba(148,183,205,.1)}
+  .mobile-section-nav::-webkit-scrollbar{display:none}
+  .mobile-section-nav a{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;min-height:42px;padding:0 13px;border:1px solid rgba(139,172,197,.2);border-radius:999px;background:rgba(8,22,37,.58);color:#a9bfd0;font-size:11px;font-weight:750;white-space:nowrap;scroll-snap-align:start;transition:background .18s,border-color .18s,color .18s}
+  .mobile-section-nav a[aria-current="location"]{border-color:rgba(45,212,191,.58);background:rgba(13,148,136,.18);color:#d9fff7}
+  .mobile-section-nav a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+}
 @media(max-width:760px){
   html{scroll-padding-top:118px}
   .site-header{min-height:0;flex-wrap:wrap;padding:10px 17px 0;row-gap:8px}

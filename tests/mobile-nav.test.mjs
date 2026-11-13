@@ -68,3 +68,11 @@ test("mobile rail moves focus to the selected section heading",async()=>{
   assert.ok(source.includes('heading.focus({preventScroll:true})'));
   assert.ok(source.includes("focusSection(id)"));
 });
+
+test("compact tablet headers use the section rail before the narrow-phone layout",async()=>{
+  const css=await readFile(new URL("../styles.css",root),"utf8");
+  assert.ok(css.includes("@media(max-width:1020px)"));
+  assert.ok(css.includes(".desktop-nav{display:none}"));
+  assert.ok(css.includes(".mobile-section-nav{display:flex"));
+  assert.ok(css.includes("@media(max-width:760px)"));
+});
