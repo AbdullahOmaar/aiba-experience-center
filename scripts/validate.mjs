@@ -48,6 +48,11 @@ if (!html.includes('role="combobox"') ||
 }
 if (!quickNav.includes('input.setAttribute("aria-activedescendant"') ||
     !quickNav.includes("function focusDestination(") ||
+    !quickNav.includes("function openFeature(id,index)") ||
+    !quickNav.includes('focusDestination(document.querySelector("#feature-explanation"),document.querySelector("#features"))') ||
+    !quickNav.includes('focusDestination(stage?.querySelector(".flow-step")||stage,document.querySelector("#journeys"))') ||
+    !quickNav.includes("const selectedCard=document.querySelector(selector)") ||
+    !quickNav.includes('focusDestination(selectedCard,document.querySelector("#financial-concepts"))') ||
     !quickNav.includes("destinationOwnsFocus=true") ||
     !app.includes("function focusFreshTarget(selector)") ||
     !app.includes('target.setAttribute("tabindex","-1");target.focus();') ||
