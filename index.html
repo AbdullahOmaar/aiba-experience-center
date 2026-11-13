@@ -2,14 +2,15 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#101b2c">
-<meta name="description" content="Explore AI Business Assistant through interactive module maps, feature explanations and business concept journeys.">\n<link rel="stylesheet" href="./explorer.css">
+<meta name="description" content="Explore AI Business Assistant through interactive module maps, feature explanations and business concept journeys.">
+<link rel="stylesheet" href="./explorer.css">
 <title>AIBA Experience Center</title><link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <a class="skip-link" href="#main" data-copy="skip">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="#top" aria-label="AIBA Experience Center home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-word">AIBA<small>EXPERIENCE CENTER</small></span></a>
-  <nav class="desktop-nav" aria-label="Main navigation"><a href="#modules" data-copy="navModules">Modules</a><a href="#features" data-copy="navFeatures">Features</a><a href="#journeys" data-copy="navJourneys">Business flows</a><a href="#ai" data-copy="navAI">AI & trust</a></nav>
+  <nav class="desktop-nav" aria-label="Main navigation"><a href="#transformation" data-copy="navStory">Story</a><a href="#modules" data-copy="navModules">Modules</a><a href="#features" data-copy="navFeatures">Features</a><a href="#journeys" data-copy="navJourneys">Business flows</a><a href="#ai" data-copy="navAI">AI & trust</a></nav>
   <div class="header-actions"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language">عربي</button><a class="header-cta" href="#modules"><span data-copy="explore">Explore AIBA</span><span aria-hidden="true">↗</span></a></div>
 </header>
 <main id="main">
@@ -33,6 +34,38 @@
 <section class="intro-band section-shell" aria-label="Experience principles">
   <div><span class="band-index">01 / 04</span><strong data-copy="bandOneTitle">Understand the whole</strong><p data-copy="bandOneText">See how modules fit together.</p></div><div><span class="band-index">02 / 04</span><strong data-copy="bandTwoTitle">Explore the details</strong><p data-copy="bandTwoText">Open features and concepts.</p></div><div><span class="band-index">03 / 04</span><strong data-copy="bandThreeTitle">Follow the connections</strong><p data-copy="bandThreeText">Trace explanatory journeys.</p></div><div><span class="band-index">04 / 04</span><strong data-copy="bandFourTitle">Understand the safeguards</strong><p data-copy="bandFourText">See the principles behind trust.</p></div>
 </section>
+<section class="transformation-section" id="transformation" aria-labelledby="transformation-title">
+  <div class="section-shell section-block">
+    <div class="section-heading">
+      <div><span class="section-kicker" data-copy="transformationKicker">FROM FRAGMENTED TO CONNECTED</span><h2 id="transformation-title" data-copy="transformationTitle">A business is more than separate records.</h2><p data-copy="transformationIntro">The product story starts by making responsibilities and relationships easier to understand — without pretending that every record is automatically synchronized.</p></div>
+      <span class="illustrative-pill"><span></span><span data-copy="conceptOnly">Concept maps only</span></span>
+    </div>
+    <div class="transformation-map" aria-label="Illustrative AIBA business transformation story">
+      <article class="transformation-stage transformation-input">
+        <span class="transformation-index">01 / CONTEXT</span>
+        <h3 data-copy="transformationLeftTitle">Separate business areas</h3>
+        <p data-copy="transformationLeftText">Each area has its own purpose, records and controls.</p>
+        <div class="transformation-chips">
+          <span data-copy="transformationChipOne">Customers & suppliers</span><span data-copy="transformationChipTwo">Sales & invoices</span><span data-copy="transformationChipThree">Purchasing & receiving</span><span data-copy="transformationChipFour">Products & inventory</span><span data-copy="transformationChipFive">Expenses & cash</span>
+        </div>
+      </article>
+      <div class="transformation-bridge" aria-hidden="true"><span class="bridge-line bridge-line-start"></span><div class="transformation-core"><span class="transformation-core-mark">A</span><strong>AIBA</strong><small>CONNECTED CONTEXT</small></div><span class="bridge-line bridge-line-end"></span><span class="bridge-arrow">↗</span></div>
+      <article class="transformation-stage transformation-outcome">
+        <span class="transformation-index">02 / CLARITY</span>
+        <h3 data-copy="transformationRightTitle">A clearer business view</h3>
+        <p data-copy="transformationRightText">Understand responsibilities, follow concept journeys and keep important distinctions visible.</p>
+        <ul class="transformation-outcomes">
+          <li><span>01</span><span data-copy="transformationOutcomeOne">Clear module responsibilities</span></li>
+          <li><span>02</span><span data-copy="transformationOutcomeTwo">Traceable concept relationships</span></li>
+          <li><span>03</span><span data-copy="transformationOutcomeThree">Distinct financial meanings</span></li>
+          <li><span>04</span><span data-copy="transformationOutcomeFour">AI with permission boundaries</span></li>
+        </ul>
+      </article>
+    </div>
+    <p class="transformation-disclaimer"><span aria-hidden="true">◇</span><span data-copy="transformationDisclaimer">Illustrative product story only. It does not represent live data, an automatic integration or an executed workflow.</span></p>
+  </div>
+</section>
+
 <section class="section-shell section-block" id="modules" aria-labelledby="modules-title">
   <div class="section-heading"><div><span class="section-kicker" data-copy="sectionOneKicker">THE PRODUCT MAP</span><h2 id="modules-title" data-copy="modulesTitle">Explore the module universe</h2><p data-copy="modulesIntro">Select a module to understand its place in the business ecosystem and the responsibilities defined for it.</p></div><span class="section-side-note"><span class="status-dot"></span><span data-copy="scopeDefined">Production V1 scope map</span></span></div>
   <div class="module-explorer">
@@ -45,7 +78,8 @@
     </div>
     <aside class="module-detail" id="module-detail" aria-live="polite" aria-atomic="true" tabindex="-1"></aside>
   </div>
-  <p class="mobile-graph-note" data-copy="mobileGraphNote">On mobile, use the searchable module directory below for a clearer view.</p>\n  <div class="module-directory-tools" aria-label="Module search and filters"><label class="module-search-wrap"><span class="sr-only" data-copy="moduleSearchLabel">Search modules</span><span class="search-glyph" aria-hidden="true">⌕</span><input id="module-search" type="search" autocomplete="off" placeholder="Search modules, responsibilities or concepts…" /></label><label class="module-filter-wrap"><span class="sr-only" data-copy="moduleFilterLabel">Filter modules</span><select id="module-filter"><option value="all">All modules</option><option value="scope">In V1 scope</option><option value="gated">Gated</option><option value="dependent">Source-dependent</option></select></label><button class="module-clear" id="module-clear" type="button">Clear</button><span class="module-result-count" id="module-result-count" aria-live="polite"></span></div><div class="module-grid" id="module-grid" aria-label="Module directory"></div>
+  <p class="mobile-graph-note" data-copy="mobileGraphNote">On mobile, use the searchable module directory below for a clearer view.</p>
+  <div class="module-directory-tools" aria-label="Module search and filters"><label class="module-search-wrap"><span class="sr-only" data-copy="moduleSearchLabel">Search modules</span><span class="search-glyph" aria-hidden="true">⌕</span><input id="module-search" type="search" autocomplete="off" placeholder="Search modules, responsibilities or concepts…" /></label><label class="module-filter-wrap"><span class="sr-only" data-copy="moduleFilterLabel">Filter modules</span><select id="module-filter"><option value="all">All modules</option><option value="scope">In V1 scope</option><option value="gated">Gated</option><option value="dependent">Source-dependent</option></select></label><button class="module-clear" id="module-clear" type="button">Clear</button><span class="module-result-count" id="module-result-count" aria-live="polite"></span></div><div class="module-grid" id="module-grid" aria-label="Module directory"></div>
   <p class="scope-footnote"><span aria-hidden="true">ⓘ</span><span data-copy="scopeFootnote">Module names follow the Production V1 charter. This map describes approved scope, not a claim that every capability is currently released.</span></p>
 </section>
 <section class="feature-section"><div class="section-shell section-block" id="features">
