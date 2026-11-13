@@ -32,7 +32,7 @@ For local preview, run a static file server from the repository root.
 - Responsive layouts for desktop, tablet and mobile, including 320px narrow width.
 - Keyboard-operable module/feature/flow controls with visible focus.
 - Reduced-motion and forced-colors support.
-- Semantic headings, buttons, links and live announcement regions.
+- Semantic headings, buttons, links and live announcement regions.\n- Searchable module directory with bilingual text matching and scope/status filters; controls reflow for narrow mobile screens.
 
 ## Hosting
 vercel.json configures a static deployment with restrictive response headers. Create a separate Vercel project only after the hosting owner approves the project mapping and domain. Do not add EXC to the AIBA Vercel project.
