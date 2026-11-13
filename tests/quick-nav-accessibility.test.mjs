@@ -79,3 +79,16 @@ test("quick navigation moves type labels below content on narrow phones",async()
   assert.ok(css.includes(".quick-nav-option-type{grid-column:2"));
   assert.ok(css.includes("@media(max-width:380px)"));
 });
+
+test("quick navigation remains bounded and usable in short phone viewports",async()=>{
+  const css=await readFile(new URL("../explorer.css",import.meta.url),"utf8");
+  assert.ok(css.includes("@media(max-height:560px)"));
+  assert.ok(css.includes("@media(max-height:440px) and (max-width:760px)"));
+  assert.ok(css.includes("@media(max-height:360px) and (max-width:760px)"));
+  assert.ok(css.includes(".quick-nav-results{max-height:31dvh"));
+  assert.ok(css.includes(".quick-nav-close{width:32px;height:32px}"));
+});
+test("quick navigation shortcut is exposed to assistive technology",async()=>{
+  const html=await readFile(new URL("../index.html",import.meta.url),"utf8");
+  assert.ok(html.includes('aria-keyshortcuts="Control+K Meta+K /"'));
+});
